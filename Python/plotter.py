@@ -3,6 +3,12 @@ from matplotlib import cm
 import matplotlib
 import numpy as np
 import conversation_laws as conv
+import tikzplotlib
+
+
+# std_path = "/home/carla/Dokumente/Uni/Bachelor/Computational Science/Hyperbolic_conversation_laws/MAT264_p2/Poster-Latex/uibposter-images/"
+std_path = "../Poster-Latex/uibposter-images/"
+
 
 def plot_flow_traffic(sol, X, T, h, k, speed, number=5):
     if number > 12:
@@ -66,6 +72,8 @@ def plot_flow_linear(sol, X, T, h, k, c, U_0, number=5):
     plt.legend()
 
     plt.tight_layout()
+    tikzplotlib.clean_figure()
+    tikzplotlib.save("test.tex")
     plt.show()
 
 
@@ -107,12 +115,22 @@ def plot_density(sol, num, X, T, h, k, U_0, c, speed, ymin=np.nan, ymax=np.nan, 
     fig = plt.figure(figsize=(15, 5))
 
     for (i, s) in enumerate(steps):
-        plt.plot(x_steplist, sol[s, :], color=colors[i])
+        if s == 0:
+            plt.plot(x_steplist, sol[s, :], color=colors[i],  label='approximated solution')
+        else:
+            plt.plot(x_steplist, sol[s, :], color=colors[i])
         if plot_mode == 'true_sol':
             velo = conv.get_true_linear_sol(U_0, s, h, k, c)
-            plt.plot(x_steplist, velo[0], ':', color=colors[i])
+            if s == 0:
+                plt.plot(x_steplist, velo[0], ':', color=colors[i], label='true solution')
+            else:
+                plt.plot(x_steplist, velo[0], ':', color=colors[i])
         elif plot_mode == 'car_speed':
-            plt.plot(x_steplist, speed(sol[s, :]), ':', color=colors[i])
+            if s == 0:
+                plt.plot(x_steplist, speed(sol[s, :]), ':', color=colors[i], label='true solution')
+            else:
+                plt.plot(x_steplist, speed(sol[s, :]), ':', color=colors[i])
+
 
     # add colorbar
     norm = matplotlib.colors.Normalize(vmin=cticks.min(), vmax=cticks.max())
@@ -125,4 +143,30 @@ def plot_density(sol, num, X, T, h, k, U_0, c, speed, ymin=np.nan, ymax=np.nan, 
         plt.ylim(bottom=ymin)
     if not np.isnan(ymax):
         plt.ylim(top=ymax)
+
+    plt.legend()
+    plt.tight_layout()
+
+    tikzplotlib.clean_figure()
+    tikzplotlib.save(std_path + "test1.tikz")
     plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

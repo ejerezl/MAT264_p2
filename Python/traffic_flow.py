@@ -25,16 +25,20 @@ method = 'Lax-Friedrichs'
 #name_of_init = 'ferry problem'
 #name_of_init = 'traffic jam'
 #name_of_init = 'two step function'
-#name_of_init = 'police problem'
+name_of_init = 'police problem'
 #name_of_init = 'cos function'
-name_of_init = 'cos function 2'
+#name_of_init = 'cos function 2'
 
 
 c = 1
 
+T = 15.01
+X = 20
+h = 0.01
+
 '------------------ SOLVE THE PDE ---------------------------------------------------------------------------------------------'
 
-X, h, x_step, T, k, t_step, U_0 = init.get_initial(name_of_init, U=0, X=20, T=5.01, h=0.01)
+X, h, x_step, T, k, t_step, U_0 = init.get_initial(name_of_init, U=0, X=X, T=T, h=0.01)
 
 f, f_prime, speed = init.get_problemfunction(name_of_problem, c=c)
 
@@ -46,7 +50,7 @@ num = 5
 if name_of_problem == 'traffic':
     plot.plot_density(sol, num, X, T, h, k, U_0, c, speed, plot_mode='car_speed')
 elif name_of_problem == 'linear':
-    plot.plot_density(sol, num, X, T, h, k, U_0, c, speed, plot_mode='true_sol')
+    plot.plot_density(sol, num, X, T, h, k, U_0, c, speed, plot_mode='true_sol', ymin=0, ymax=1)
 elif name_of_problem == 'Burger':
     plot.plot_density(sol, num, X, T, h, k, U_0, c, speed, plot_mode='none')
 elif name_of_problem == 'Buckley-Leverett':
