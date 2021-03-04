@@ -24,7 +24,7 @@ U_0[0, int(np.floor(x_step/2)):] = 0.3
 #U_0[0, :16] = np.cos(10 * np.arange(0, 16*h, h))**2
 
 
-'~~~~~ CELECT A METHOD ~~~~~'
+'~~~~~ SELECT A METHOD ~~~~~'
 #method = 'backward_Euler'
 #method = 'one_side'
 #method = 'Lax-Friedrichs'
@@ -91,4 +91,4 @@ for datapoint in np.linspace(0, T, 2):
 
 ax.set_ylim([0, 1])
 plt.tight_layout()
-plt.show()
+plt.savefig('traffic.svg')
