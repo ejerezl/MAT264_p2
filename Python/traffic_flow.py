@@ -13,21 +13,21 @@ name_of_problem = 'linear'
 
 
 '~~~~~~~~~~ SELECT THE METHOD ~~~~~~~~~~'
-#method = 'Lax-Friedrichs'
+method = 'Lax-Friedrichs'
 #method = 'Lax-Wendsdroff'
 #method = 'Lax-Wendsdroff from lecture'
 #method = 'left sided'
 #method = 'right sided'
-method = 'Godunov'
+#method = 'Godunov'
 
 
 '~~~~~~~~~~ SELECT THE INITIAL DATA ~~~~~~~~~~'
 #name_of_init = 'ferry problem'
 #name_of_init = 'traffic jam'
 #name_of_init = 'two step function'
-name_of_init = 'police problem'
+#name_of_init = 'police problem'
 #name_of_init = 'cos function'
-#name_of_init = 'cos function 2'
+name_of_init = 'cos function 2'
 
 
 c = 1

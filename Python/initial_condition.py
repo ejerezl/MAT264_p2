@@ -21,13 +21,13 @@ def get_initial(name, U=0, X=20, T=100, h=0.01):
         U_0[0, :int(np.floor(x_step/5))] = 0.9
         U_0[0, x_step - int(np.floor(x_step/5)):] = 0.9
     elif name == 'police problem':
-        U_0[0, int(np.floor(x_step/5))-300:int(np.floor(x_step/5))] = 0.5
-        U_0[0, :int(np.floor(x_step/5))-300] = 0.15
-        U_0[0, int(np.floor(x_step/5)):] = 0.15
+        U_0[0, int(np.floor(x_step/5)):int(np.floor(x_step/3))] = 0.5
+        U_0[0, :int(np.floor(x_step/5))] = 0.15
+        U_0[0, int(np.floor(x_step/3)):] = 0.15
     elif name == 'cos function':
         U_0[0, :160] = np.cos(1 * np.arange(0, 160*h, h))**2
     elif name == 'cos function 2':
-        U_0[0, :] = 1 * np.cos(0.25 * np.arange(0, x_step*h, h))**2
+        U_0[0, :] = 1 * np.cos(0.25 * np.arange(0, X, h)[0:x_step])**2
     elif name == 'selfmade':
         U_0[0, :] = U
 

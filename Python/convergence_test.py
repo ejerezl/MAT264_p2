@@ -9,20 +9,12 @@ import helper_functions as help
 name_of_problem = 'linear'
 
 
-'~~~~~~~~~~ SELECT THE METHOD ~~~~~~~~~~'
-method = 'Lax-Friedrichs'
-#method = 'Lax-Wendsdroff'
-#method = 'Lax-Wendsdroff from lecture'
-#method = 'left sided'
-#method = 'right sided'
-
-
 '~~~~~~~~~~ SELECT THE INITIAL DATA ~~~~~~~~~~'
 #name_of_init = 'ferry problem'
 #name_of_init = 'traffic jam'
 #name_of_init = 'two step function'
-name_of_init = 'police problem'
-#name_of_init = 'cos function'
+#name_of_init = 'police problem'
+name_of_init = 'cos function'
 #name_of_init = 'cos function 2'
 
 
@@ -67,28 +59,28 @@ sol_Godu = step.solve_problem('Godunov', U_0, X, T, h, k, x_step, t_step, f, f_p
 t_max_index = np.shape(sol_laxF)[0] - 1
 
 error_laxF = []
-for datapoint_raw in np.linspace(0, t_max_index, int(np.floor(t_max_index/10))):
+for datapoint_raw in np.linspace(0, t_max_index, int(np.floor(t_max_index/50))):
     datapoint_raw = int(np.floor(datapoint_raw))
     velo = step.get_true_linear_sol(U_0, datapoint_raw, h, k, c)
     err = help.norm_1_two(sol_laxF[datapoint_raw, :], velo[0], h) / help.norm_1(velo[0], h)
     error_laxF.append(err)
 
 error_laxW = []
-for datapoint_raw in np.linspace(0, t_max_index, int(np.floor(t_max_index/10))):
+for datapoint_raw in np.linspace(0, t_max_index, int(np.floor(t_max_index/50))):
     datapoint_raw = int(np.floor(datapoint_raw))
     velo = step.get_true_linear_sol(U_0, datapoint_raw, h, k, c)
     err = help.norm_1_two(sol_laxW[datapoint_raw, :], velo[0], h) / help.norm_1(velo[0], h)
     error_laxW.append(err)
 
 error_laxW_l = []
-for datapoint_raw in np.linspace(0, t_max_index, int(np.floor(t_max_index/10))):
+for datapoint_raw in np.linspace(0, t_max_index, int(np.floor(t_max_index/50))):
     datapoint_raw = int(np.floor(datapoint_raw))
     velo = step.get_true_linear_sol(U_0, datapoint_raw, h, k, c)
     err = help.norm_1_two(sol_laxW_l[datapoint_raw, :], velo[0], h) / help.norm_1(velo[0], h)
     error_laxW_l.append(err)
 
 error_Godu = []
-for datapoint_raw in np.linspace(0, t_max_index, int(np.floor(t_max_index/10))):
+for datapoint_raw in np.linspace(0, t_max_index, int(np.floor(t_max_index/50))):
     datapoint_raw = int(np.floor(datapoint_raw))
     velo = step.get_true_linear_sol(U_0, datapoint_raw, h, k, c)
     err = help.norm_1_two(sol_Godu[datapoint_raw, :], velo[0], h) / help.norm_1(velo[0], h)
