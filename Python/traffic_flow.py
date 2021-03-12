@@ -7,20 +7,15 @@ import conversation_laws as step
 
 '~~~~~~~~~~ SELECT THE PROBLEM FUNCTIONS ~~~~~~~~~~'
 #name_of_problem = 'traffic'
-#name_of_problem = 'linear'
-name_of_problem = 'Burger'
+name_of_problem = 'linear'
+#name_of_problem = 'Burger'
 #name_of_problem = 'Buckley-Leverett'
 
 
 '~~~~~~~~~~ SELECT THE METHOD ~~~~~~~~~~'
 #method = 'Lax-Friedrichs'
-<<<<<<< HEAD
-method = 'Lax-Wendsdroff'
-#method = 'Lax-Wendsdroff from lecture'
-=======
 #method = 'Lax-Wendsdroff'
 method = 'Lax-Wendsdroff from lecture'
->>>>>>> 966d51532b4509241cfd0e64657748a45819bc5a
 #method = 'left sided'
 #method = 'right sided'
 #method = 'Godunov'
@@ -29,17 +24,17 @@ method = 'Lax-Wendsdroff from lecture'
 '~~~~~~~~~~ SELECT THE INITIAL DATA ~~~~~~~~~~'
 #name_of_init = 'ferry problem'
 #name_of_init = 'traffic jam'
-name_of_init = 'two step function'
-#name_of_init = 'police problem'
+#name_of_init = 'two step function'
+name_of_init = 'police problem'
 #name_of_init = 'cos function'
 #name_of_init = 'cos function 2'
 
 
 c = 1
 
-T = 15.01
+T = 10
 X = 20
-h = 0.01
+h = 0.0025
 
 '------------------ SOLVE THE PDE ---------------------------------------------------------------------------------------------'
 

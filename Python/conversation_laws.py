@@ -6,7 +6,7 @@ def solve_problem(method, U_0, X, T, h, k, x_step, t_step, f, f_prime):
     t = 0
     for n in range(1, t_step):
         t += k
-        #print(t / T)
+        print(t / T)
 
         if method == 'Lax-Friedrichs':
             sol = Lax_Friedrich_update(sol, k, h, n, f)

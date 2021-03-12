@@ -106,7 +106,7 @@ plt.plot(error_laxF, label='Lax Friedrich')
 plt.plot(error_laxW, label='Lax Wendroff')
 plt.plot(error_laxW_l, label='Lax Wendroff from slides')
 plt.plot(error_Godu, label='Godunov')
-plt.legend(bbox_to_anchor=(1.04,1), borderaxespad=0)
+plt.legend(bbox_to_anchor=(1.04, 1), borderaxespad=0)
 plt.show()
 
 
