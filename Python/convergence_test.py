@@ -25,12 +25,12 @@ name_of_init = 'police problem'
 
 
 c = 1
-
+T = 20
 '------------------ SOLVE THE PDE ---------------------------------------------------------------------------------------------'
 
 '~~~~~ LAX-FRIEDRICHS ~~~~~'
 
-X, h, x_step, T, k, t_step, U_0 = init.get_initial(name_of_init, U=0, X=20, T=25.01, h=0.01)
+X, h, x_step, T, k, t_step, U_0 = init.get_initial(name_of_init, U=0, X=20, T = T, h=0.01)
 
 f, f_prime, speed = init.get_problemfunction(name_of_problem, c=c)
 
@@ -40,6 +40,7 @@ end = timeit.timeit()
 t_laxf = (end-start)
 
 
+"""
 '~~~~~ LAX-WENDROF ~~~~~'
 X, h, x_step, T, k, t_step, U_0 = init.get_initial(name_of_init, U=0, X=20, T=25.01, h=0.01)
 
@@ -49,9 +50,10 @@ start = timeit.timeit()
 sol_laxW = step.solve_problem('Lax-Wendsdroff', U_0, X, T, h, k, x_step, t_step, f, f_prime)
 end = timeit.timeit()
 t_laxW = (end-start)
+"""
 
 '~~~~~ LAX-WENDROF from lecture ~~~~~'
-X, h, x_step, T, k, t_step, U_0 = init.get_initial(name_of_init, U=0, X=20, T=25.01, h=0.01)
+X, h, x_step, T, k, t_step, U_0 = init.get_initial(name_of_init, U=0, X=20, T=T, h=0.01)
 
 f, f_prime, speed = init.get_problemfunction(name_of_problem, c=c)
 
@@ -61,7 +63,7 @@ end = timeit.timeit()
 t_laxW_l = (end-start)
 
 '~~~~~ Godunov ~~~~~'
-X, h, x_step, T, k, t_step, U_0 = init.get_initial(name_of_init, U=0, X=20, T=25.01, h=0.01)
+X, h, x_step, T, k, t_step, U_0 = init.get_initial(name_of_init, U=0, X=20, T=T, h=0.01)
 
 f, f_prime, speed = init.get_problemfunction(name_of_problem, c=c)
 
@@ -80,14 +82,14 @@ for datapoint_raw in np.linspace(0, t_max_index, int(np.floor(t_max_index/50))):
     velo = step.get_true_linear_sol(U_0, datapoint_raw, h, k, c)
     err = help.norm_1_two(sol_laxF[datapoint_raw, :], velo[0], h) / help.norm_1(velo[0], h)
     error_laxF.append(err)
-print(error_laxF)
+"""
 error_laxW = []
 for datapoint_raw in np.linspace(0, t_max_index, int(np.floor(t_max_index/50))):
     datapoint_raw = int(np.floor(datapoint_raw))
     velo = step.get_true_linear_sol(U_0, datapoint_raw, h, k, c)
     err = help.norm_1_two(sol_laxW[datapoint_raw, :], velo[0], h) / help.norm_1(velo[0], h)
     error_laxW.append(err)
-
+"""
 error_laxW_l = []
 for datapoint_raw in np.linspace(0, t_max_index, int(np.floor(t_max_index/50))):
     datapoint_raw = int(np.floor(datapoint_raw))
@@ -102,12 +104,25 @@ for datapoint_raw in np.linspace(0, t_max_index, int(np.floor(t_max_index/50))):
     err = help.norm_1_two(sol_Godu[datapoint_raw, :], velo[0], h) / help.norm_1(velo[0], h)
     error_Godu.append(err)
 
+fontsize = 30
+plt.figure(figsize = [15, 10])
+
 plt.plot(error_laxF, label='Lax Friedrich')
-plt.plot(error_laxW, label='Lax Wendroff')
-plt.plot(error_laxW_l, label='Lax Wendroff from slides')
+#plt.plot(error_laxW, label='Lax Wendroff')
+plt.plot(error_laxW_l, label='Lax Wendroff')
 plt.plot(error_Godu, label='Godunov')
-plt.legend(bbox_to_anchor=(1.04,1), borderaxespad=0)
+#plt.legend(bbox_to_anchor=(1.04,1), borderaxespad=0)
+plt.rcParams.update({'font.size': fontsize})
+
+plt.yticks(fontsize = fontsize)
+plt.xticks(fontsize = fontsize)
+
+plt.xlabel('Time', fontsize = fontsize)
+plt.ylabel('Error in 1-norm', fontsize = fontsize)
+plt.legend(fontsize = fontsize)
+plt.tight_layout()
 plt.show()
+
 
 
 

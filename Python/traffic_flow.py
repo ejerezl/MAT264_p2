@@ -6,21 +6,16 @@ import conversation_laws as step
 
 
 '~~~~~~~~~~ SELECT THE PROBLEM FUNCTIONS ~~~~~~~~~~'
-#name_of_problem = 'traffic'
+name_of_problem = 'traffic'
 #name_of_problem = 'linear'
-name_of_problem = 'Burger'
+#name_of_problem = 'Burger'
 #name_of_problem = 'Buckley-Leverett'
 
 
 '~~~~~~~~~~ SELECT THE METHOD ~~~~~~~~~~'
 #method = 'Lax-Friedrichs'
-<<<<<<< HEAD
-method = 'Lax-Wendsdroff'
-#method = 'Lax-Wendsdroff from lecture'
-=======
 #method = 'Lax-Wendsdroff'
 method = 'Lax-Wendsdroff from lecture'
->>>>>>> 966d51532b4509241cfd0e64657748a45819bc5a
 #method = 'left sided'
 #method = 'right sided'
 #method = 'Godunov'
@@ -29,15 +24,16 @@ method = 'Lax-Wendsdroff from lecture'
 '~~~~~~~~~~ SELECT THE INITIAL DATA ~~~~~~~~~~'
 #name_of_init = 'ferry problem'
 #name_of_init = 'traffic jam'
-name_of_init = 'two step function'
+#name_of_init = 'two step function'
 #name_of_init = 'police problem'
+name_of_init = 'police problem 2'
 #name_of_init = 'cos function'
 #name_of_init = 'cos function 2'
 
 
 c = 1
 
-T = 15.01
+T = 20.00
 X = 20
 h = 0.01
 
@@ -53,7 +49,7 @@ sol = step.solve_problem(method, U_0, X, T, h, k, x_step, t_step, f, f_prime)
 num = 5
 
 if name_of_problem == 'traffic':
-    plot.plot_density(sol, num, X, T, h, k, U_0, c, speed, plot_mode='car_speed')
+    plot.plot_density(sol, num, X, T, h, k, U_0, c, speed, plot_mode='none')
 elif name_of_problem == 'linear':
     plot.plot_density(sol, num, X, T, h, k, U_0, c, speed, plot_mode='true_sol', ymin=0, ymax=1)
 elif name_of_problem == 'Burger':
