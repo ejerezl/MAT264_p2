@@ -147,8 +147,8 @@ def plot_density(sol, num, X, T, h, k, U_0, c, speed, ymin=np.nan, ymax=np.nan, 
     plt.legend()
     plt.tight_layout()
 
-    tikzplotlib.clean_figure()
-    tikzplotlib.save(std_path + "test1.tikz")
+    #tikzplotlib.clean_figure()
+    #tikzplotlib.save(std_path + "test1.tikz")
     plt.show()
 
 
