@@ -14,8 +14,13 @@ name_of_problem = 'Burger'
 
 '~~~~~~~~~~ SELECT THE METHOD ~~~~~~~~~~'
 #method = 'Lax-Friedrichs'
+<<<<<<< HEAD
 method = 'Lax-Wendsdroff'
 #method = 'Lax-Wendsdroff from lecture'
+=======
+#method = 'Lax-Wendsdroff'
+method = 'Lax-Wendsdroff from lecture'
+>>>>>>> 966d51532b4509241cfd0e64657748a45819bc5a
 #method = 'left sided'
 #method = 'right sided'
 #method = 'Godunov'
@@ -38,7 +43,7 @@ h = 0.01
 
 '------------------ SOLVE THE PDE ---------------------------------------------------------------------------------------------'
 
-X, h, x_step, T, k, t_step, U_0 = init.get_initial(name_of_init, U=0, X=X, T=T, h=0.01)
+X, h, x_step, T, k, t_step, U_0 = init.get_initial(name_of_init, U=0, X=X, T=T, h=h)
 
 f, f_prime, speed = init.get_problemfunction(name_of_problem, c=c)
 

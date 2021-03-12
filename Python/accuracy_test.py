@@ -10,12 +10,12 @@ name_of_problem = 'linear'
 
 
 '~~~~~~~~~~ SELECT THE METHOD ~~~~~~~~~~'
-#method = 'Lax-Friedrichs'
+method = 'Lax-Friedrichs'
 #method = 'Lax-Wendsdroff'
 #method = 'Lax-Wendsdroff from lecture'
 #method = 'left sided'
 #method = 'right sided'
-method = 'Godunov'
+#method = 'Godunov'
 
 
 c = 1
@@ -114,7 +114,7 @@ for x_step in x_step_list:
 
 '------------------ PLOT SOLUTION ---------------------------------------------------------------------------------------------'
 
-plt.show()
+#plt.show()
 
 errors = []
 
@@ -125,10 +125,10 @@ for i in range(len(sol_list)):
     true_sol = step.get_true_linear_sol(U_0_list[i], int(np.floor(T / k)), h, k, c)
     err = help.norm_1_two(sol_list[i], true_sol[0], h) / help.norm_1(true_sol[0], h)
     errors.append(err)
-    plt.plot(sol_list[i])
-    plt.plot(true_sol[0], label='true')
-    plt.legend()
-    plt.show()
+    #plt.plot(sol_list[i])
+    #plt.plot(true_sol[0], label='true')
+    #plt.legend()
+    #plt.show()
 
 plt.plot(x_step_list, errors, label='Cos Problem')
 

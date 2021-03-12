@@ -19,8 +19,8 @@ name_of_problem = 'linear'
 #name_of_init = 'ferry problem'
 #name_of_init = 'traffic jam'
 #name_of_init = 'two step function'
-#name_of_init = 'police problem'
-name_of_init = 'cos function'
+name_of_init = 'police problem'
+#name_of_init = 'cos function'
 #name_of_init = 'cos function 2'
 
 
