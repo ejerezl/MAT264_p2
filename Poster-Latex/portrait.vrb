@@ -1,86 +1,3 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Class options                            %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Orientation:                             %
-% portrait (default), landscape            %
-%                                          %
-% Paper size:                              %
-% a0paper (default), a1paper, a2paper,     %
-% a3paper, a4paper, a5paper, a6paper       %
-%                                          %
-% Language:                                %
-% english (default), norsk                 %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\documentclass{uibposter}
-
-
-\usepackage{lipsum}                                % Dummy text
-\usepackage[figwidth = 0.98\linewidth]{todonotes}  % Dummy image (and more!)
-\usepackage[absolute, overlay]{textpos}  
-\usepackage{varwidth}
-\DeclareUnicodeCharacter{200B}{ }% Figure placement
-\setlength{\TPHorizModule}{\paperwidth}
-\setlength{\TPVertModule}{\paperheight}
-
-% Our packages
-\usepackage{tikz}
-% tikzscale kann pgfplots skalieren, z.b. zu einem fixen Seitenverhältnis.
-\usepackage{tikzscale}
-\usepackage{pgfplots}
-\pgfplotsset{compat=newest}
-\usepgfplotslibrary{external}
-% tikzexternalize requires -shell-escape when running latex.
-\usetikzlibrary{external}
-% exportiere die Bilder in den Ordner tikz
-\tikzexternalize[prefix=tikz/]
-\DeclareUnicodeCharacter{2212}{−}
-\usepgfplotslibrary{groupplots,dateplot}
-\usetikzlibrary{patterns,shapes.arrows}
-\pgfplotsset{compat=newest}
-\def\axisdefaultwidth{8cm}
-\def\axisdefaultheight{5cm}
-\pgfplotsset{every axis/.style={scale only axis}}
-
-\usepackage{subcaption}
-
-
-\title{Title}
-\author
-{%
-    First Author
-    \and
-    Second Author
-}
-%% Optional:
-\institute
-{
-    Department of mathematics -- University of Bergen
-}
-
-
-% Or:
-%\institute{Contact information}
-
-
-%% Remove footline:
-%\setbeamertemplate{footline}{}
-
-
-\begin{document}
-
-\begin{textblock}{0.5}(0.038, 0.055)
-    \color{white}
-    \sffamily
-    \textbf{Ingress}
-    \\
-A new second order scheme for hyperbolic conversation laws allowing fast and accurate computation of smooth solutions. 
-%TODO Better Impress
-%The Lax-Wendroff scheme for solving hyperbolic conservation laws as competitor against the Lax-Friedrichs and Godunov method. Some properties will be presented and the numerical results will be compared.
-\end{textblock}
-
-\begin{frame}[fragile]
 
 \begin{columns}
 \begin{column}{0.5\textwidth - 1.5cm}
@@ -126,7 +43,7 @@ For non-linear equations the scheme can be generalized to:
 &U_j^{n+1} = U_j^n\\
 &- \frac{k}{h}\left(f\left(U_{j+\frac{1}{2}}^{n+\frac{1}{2}}\right) - f\left(U_{j-\frac{1}{2}}^{n+\frac{1}{2}}\right)\right)
 \end{align*}
-where  
+where
 \begin{align*}
 U_{j+\frac{1}{2}}^{n+\frac{1}{2}} =&~ \frac{1}{2} (U_j^n + U_{j+1}^n)\\
 &- \frac{k}{2h}[f(U_{j+1}^n) - f(U_j^n)]
@@ -146,7 +63,7 @@ L_k(x, t) = \frac{a}{6}(a^2 k^2 - h^2)u_{xxx} + \mathcal{O}(h^3)
 \begin{column}{0.5\textwidth - 1.5cm}
 \vspace*{-14.5cm}
 
-As $L_k(x,t) = \mathcal{O}(h^2)$ the method is consistent and has order 2. Additional for stability the condition $|\nu| < 1$ where $\nu = a\frac{k}{h}$ is the Courant number must be fulfilled. 
+As $L_k(x,t) = \mathcal{O}(h^2)$ the method is consistent and has order 2. Additional for stability the condition $|\nu| < 1$ where $\nu = a\frac{k}{h}$ is the Courant number must be fulfilled.
 In the case of an linear advection equation the convergence of a method follows from consistency and stability by the Lax equivalence theorem. In the nonlinear case Lax and Wendroff proved that a consistent numerical method with bounded solutions always converges to a weak solution of the equation.
 The local truncation error also leads to the modified equation which is given as:
 \begin{align*}
@@ -162,13 +79,13 @@ Based on this relation its possible to calculate the group velocity $c’(\xi)$ 
 c'(\xi) = a + 3\mu \xi^2
 \end{align*}
 As $\mu = \frac{a}{6}h^2(\nu^2 - 1)$ and since $a > 0$ and for stability $|\nu| < 1$ the group velocity $c’(\xi)$ is smaller than $a$ for all $\xi$, but tens to $a$ as $h\rightarrow0$. It follows that the scheme leads to an oscillatory wave train lagging behind the discontinuity, which is traveling with speed $a$. This can also later be seen later in the numerical experiments.
-    
+
 \vspace{0.5cm}
 \textbf{Numerical Analysis}
 \vspace{0.5cm}
-    
+
 In the following the approximations of the Lax-Wendroff method will be presented in comprehension to the Lax-Friedrich and Godunov method.
-    
+
 \end{column}
 \begin{column}{0.5\textwidth - 1.5cm}
 \vspace*{-14.5cm}
@@ -178,27 +95,27 @@ In the following the approximations of the Lax-Wendroff method will be presented
 
     Do not use colorful backgrounds with super-imposed text, low-resolution images or L O N G lines of text.
         \vspace{1.5cm}
-        
+
     \fbox{\small\begin{varwidth}{\textwidth}Do not use boxes like this unless they are necessary. This box is used to present content relating to the illustration below.\end{varwidth}}
     \vspace{1.5cm}
-    
+
     \includegraphics{fig/error_over_time.png}
 
     \textbf{Logos}
-    
+
     Leave out unnecessary institutional “brands” or logos. The only logo used in this template is the UiB logo signalizing that this poster reflects research carried out at this institution.
 \vspace{0.2cm}
 
-    A research group may have members from various institutions and receive funding from different sources. This should be stated in the acknowledgment section unless you are bound by contract to include the logo. 
+    A research group may have members from various institutions and receive funding from different sources. This should be stated in the acknowledgment section unless you are bound by contract to include the logo.
 \vspace{0.2cm}
 
     Including a variety of logos only add to visual confusion!
     \vspace{5cm}
-    
+
     {\scriptsize
     \textbf{REFERENCES}
 
-    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. 
+    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
 
     Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse
 
@@ -211,5 +128,3 @@ In the following the approximations of the Lax-Wendroff method will be presented
 
 
 
-\end{frame}
-\end{document}
