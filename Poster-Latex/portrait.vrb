@@ -10,17 +10,17 @@
 \textbf{Abstract}
 \vspace{0.5cm}
 
-The main topic of this poster is to introduce the Lax-Wendroff scheme for solving the hyperbolic systems of conservations laws. In concrete, we will focus on the 1 space dimensional advection equation for different flows to illustrate how our scheme works, and to compare it with other numerical methods. This will lead us to conclude that the Lax-Wendroff scheme works, in general terms, better than the other ones.
+The main topic of this poster is to introduce the Lax-Wendroff scheme for solving the hyperbolic conservations laws. In concrete, it focus on the 1 space dimensional advection equation for different flows to illustrate how the scheme works, and to compare it with other numerical methods. This will lead us to conclude that the Lax-Wendroff scheme works, in general terms, better than the other ones.
 
 \vspace{0.5cm}
 \textbf{Introduction}
 \vspace{0.5cm}
 
-Hyperbolic systems of conservation laws are time-dependent systems of partial differential equations that describes the conservation of some quantities. In the 1D case the equation is:
+Hyperbolic conservation laws are time-dependent systems of partial differential equations that describes the conservation of some quantities. The equation is given as:
 \begin{align*}
 u_t + f(u)_x = 0
 \end{align*}
-Where u(x,t) is a vector of conserved quantities (could be mass, momentum, heat,..) and f(u) is the flux function.
+Where $u(x,t)$ is a vector of conserved quantities (could be mass, momentum, heat,..) while $f(u)$ is the flux function.
 This equation must be augmented with initial and boundary conditions. The easiest problem is the Cauchy problem where we need to give initial conditions:
 \begin{align*}
 u(x, 0) = u_0(x)
@@ -32,12 +32,12 @@ Flux functions are commonly nonlinear functions, leading to nonlinear systems of
 \textbf{The Lax-Wendroff Method}
 \vspace{-1cm}
 
-For linear hyperbolic systems $u_t + au_x = 0$ the Lax-Wendroff methods is given as:
+For linear hyperbolic systems ($u_t + au_x = 0$) the Lax-Wendroff methods is given as:
 \begin{align*}
 U_j^{n+1} = U_j^n - \frac{k}{2h}a(U_{j+1}^n  - U_{j-1}^n)\\
 + \frac{k^2}{2h^2}a^2(U_{j+1}^n - 2U_j^n + U_{j-1}^n)
 \end{align*}
-The idea is to take the first three terms of the Taylor series expansion and use centered difference approximations for the derivatives appearing there. The stepsizes k in time and h in space are chosen such that $|a|\frac{k}{h} \leq 1$ to fulfil the CFL condition.
+The idea is to take the first three terms of the Taylor series expansion and use centered difference approximations for the derivatives appearing there. The stepsizes $k$ in time and $h$ in space are chosen such that $|a|\frac{k}{h} \leq 1$ to fulfil the CFL condition.
 For non-linear equations the scheme can be generalized to:
 \begin{align*}
 &U_j^{n+1} = U_j^n\\

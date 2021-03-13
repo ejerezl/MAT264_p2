@@ -137,7 +137,7 @@ plt.legend(bbox_to_anchor=(0., -0.25, 1., .102), loc='upper left',
             ncol=2, mode="expand", borderaxespad=0., handlelength=1., fontsize=21.6)
 plt.tight_layout()
 if save:
-    plt.savefig('figures/error_over_time.png', dpi=300)
+    plt.savefig('figures/plot.png', dpi=300)
 plt.show()
 
 
