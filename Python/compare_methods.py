@@ -3,11 +3,12 @@ import matplotlib.pyplot as plt
 import plotter as plot
 import initial_condition as init
 import conversation_laws as step
-import os
 import matplotlib
+import os
 
 cwd = os.getcwd()
 plt.style.use(cwd + '/poster.mplstyle')
+
 
 '~~~~~~~~~~ SELECT THE PROBLEM FUNCTIONS ~~~~~~~~~~'
 name_of_problem = 'traffic'
@@ -29,7 +30,7 @@ name_of_init = 'police problem'
 
 c = 1
 
-T = 15
+T = 8.0025
 X = 20
 h = 0.01
 
