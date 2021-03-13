@@ -4,6 +4,10 @@ import matplotlib
 import numpy as np
 import conversation_laws as conv
 import tikzplotlib
+import os
+
+cwd = os.getcwd()
+plt.style.use(cwd + '/poster.mplstyle')
 
 
 # std_path = "/home/carla/Dokumente/Uni/Bachelor/Computational Science/Hyperbolic_conversation_laws/MAT264_p2/Poster-Latex/uibposter-images/"
@@ -91,6 +95,15 @@ def plot_density(sol, num, X, T, h, k, U_0, c, speed, ymin=np.nan, ymax=np.nan, 
     :param num_cticks: number of labeled ticks on the colorbar
     :param plot_mode: 'none' , 'car_speed' for traffic problem or 'true_sol' for linear Rieman problem
     """
+    col_span = 2
+    save = True
+    if col_span == 2:
+        lw = 3
+        matplotlib.rcParams['figure.figsize'] = (14.78636, 11.089770003/2)
+    elif col_span == 1:
+        lw = 2
+        matplotlib.rcParams['figure.figsize'] = (6.8025, 5.101875001/2)
+
     steplist = np.arange(0, T, k)
     x_steplist = np.arange(0, X, h)
 
@@ -112,54 +125,42 @@ def plot_density(sol, num, X, T, h, k, U_0, c, speed, ymin=np.nan, ymax=np.nan, 
 
     colors = colormap(np.linspace(0, 1, num=len(steps)))
 
-    if save:
-        fig = plt.figure(figsize=(15, 6), dpi=500)
-    else:
-        fig = plt.figure(figsize=(15, 6))
-
     for (i, s) in enumerate(steps):
         if s == 0:
-            plt.plot(x_steplist, sol[s, :], color=colors[i],  label='approximated solution')
+            plt.plot(x_steplist, sol[s, :], color=colors[i],  label='\\rmfamily approximated solution', linewidth=lw)
         else:
-            plt.plot(x_steplist, sol[s, :], color=colors[i])
+            plt.plot(x_steplist, sol[s, :], color=colors[i], linewidth=lw)
         if plot_mode == 'true_sol':
             velo = conv.get_true_linear_sol(U_0, s, h, k, c)
             if s == 0:
-                plt.plot(x_steplist, velo[0], ':', color=colors[i], label='true solution')
+                plt.plot(x_steplist, velo[0], ':', color=colors[i], label='\\rmfamily true solution', linewidth=lw)
             else:
-                plt.plot(x_steplist, velo[0], ':', color=colors[i])
+                plt.plot(x_steplist, velo[0], ':', color=colors[i], linewidth=lw)
         elif plot_mode == 'car_speed':
             if s == 0:
-                plt.plot(x_steplist, speed(sol[s, :]), ':', color=colors[i], label='true solution')
+                plt.plot(x_steplist, speed(sol[s, :]), ':', color=colors[i], label='\\rmfamily true solution', linewidth=lw)
             else:
-                plt.plot(x_steplist, speed(sol[s, :]), ':', color=colors[i])
-
+                plt.plot(x_steplist, speed(sol[s, :]), ':', color=colors[i], linewidth=lw)
 
     # add colorbar
-    fontsize = 32
-
     norm = matplotlib.colors.Normalize(vmin=cticks.min(), vmax=cticks.max())
     cmap = cm.ScalarMappable(norm=norm, cmap=colormap)
     cmap.set_array([])
     cbar = plt.colorbar(cmap, ticks=cticks)
-    cbar.ax.set_ylabel('time [min]', fontsize=fontsize)
-    cbar.ax.tick_params(labelsize=fontsize)
+    cbar.ax.set_xlabel('\\rmfamily time [min]')
+    cbar.ax.xaxis.set_label_coords(-0.2, -0.135)
 
     if not np.isnan(ymin):
         plt.ylim(bottom=ymin)
     if not np.isnan(ymax):
         plt.ylim(top=ymax)
 
-    plt.xlabel('Distance [km]', fontsize=fontsize)
-    plt.ylabel(r'Density $[\frac{cars}{km}]$', fontsize=fontsize)
-    plt.yticks(np.arange(0.7, 0.85, 0.05), fontsize=fontsize)
-    plt.xticks(np.arange(0.0, 20.1, 5.0), fontsize=fontsize)
-    #plt.legend(fontsize = fontsize)
-    plt.tight_layout()
-    #tikzplotlib.clean_figure()
-    #tikzplotlib.save(std_path + "test1.tikz")
+    plt.xlabel('\\rmfamily Distance [km]', labelpad=1)
+    plt.ylabel('\\rmfamily Density $\\left[\\frac{\\mathrm{cars}}{\\mathrm{km}}\\right]$')
+    plt.yticks(np.arange(0.7, 0.85, 0.05))
+    plt.xticks(np.arange(0.0, 20.1, 5.0))
     if save:
-        plt.savefig('figures/traffic_motivation.png')
+        plt.savefig('figures/plot.png')
     plt.show()
 
 

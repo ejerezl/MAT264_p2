@@ -1,0 +1,16 @@
+# figure.figsize : 14.78636, 11.089770003
+# font.family : serif# computer modern roman
+text.usetex : True
+figure.constrained_layout.use: True
+# no effect figure.titleweight: 700  # normal = 400
+axes.titlesize : 37.32
+axes.labelsize : 37.32
+legend.fontsize: 37.32
+lines.markersize : 10
+xtick.labelsize : 37.32
+ytick.labelsize : 37.32
+
+axes.labelpad:      15.0
+
+savefig.transparent: True
+legend.framealpha:    0.

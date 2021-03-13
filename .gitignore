@@ -127,3 +127,32 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# OS generated files #
+######################
+*.DS_Store
+*.DS_Store?
+*._*
+*.*.sw[op]
+*.Spotlight-V100
+*.Trashes
+*ehthumbs.db
+*Thumbs.db
+
+# Ignore LaTEX files
+*.aux
+*.synctex.gz
+*.synctex*
+*.bbl
+*.bcf
+*.blg
+*.out
+*.run.xml
+*.fdb_latexmk
+*.fls
+*.log
+*.pdf
+*.toc
+
+.~*
+
