@@ -77,7 +77,7 @@ def plot_flow_linear(sol, X, T, h, k, c, U_0, number=5):
     plt.show()
 
 
-def plot_density(sol, num, X, T, h, k, U_0, c, speed, ymin=np.nan, ymax=np.nan, colormap=cm.viridis, num_cticks=None, plot_mode='none'):
+def plot_density(sol, num, X, T, h, k, U_0, c, speed, ymin=np.nan, ymax=np.nan, colormap=cm.viridis, num_cticks=None, plot_mode='none', save=False):
     """
     plots the density of the solution.
 
@@ -112,7 +112,10 @@ def plot_density(sol, num, X, T, h, k, U_0, c, speed, ymin=np.nan, ymax=np.nan, 
 
     colors = colormap(np.linspace(0, 1, num=len(steps)))
 
-    fig = plt.figure(figsize=(15, 5))
+    if save:
+        fig = plt.figure(figsize=(15, 6), dpi=500)
+    else:
+        fig = plt.figure(figsize=(15, 6))
 
     for (i, s) in enumerate(steps):
         if s == 0:
@@ -133,29 +136,30 @@ def plot_density(sol, num, X, T, h, k, U_0, c, speed, ymin=np.nan, ymax=np.nan, 
 
 
     # add colorbar
-    fontsize = 30
+    fontsize = 32
 
     norm = matplotlib.colors.Normalize(vmin=cticks.min(), vmax=cticks.max())
     cmap = cm.ScalarMappable(norm=norm, cmap=colormap)
     cmap.set_array([])
     cbar = plt.colorbar(cmap, ticks=cticks)
-    cbar.ax.set_ylabel('time (s)', fontsize = fontsize)
-    cbar.ax.tick_params(labelsize = fontsize)
+    cbar.ax.set_ylabel('time [min]', fontsize=fontsize)
+    cbar.ax.tick_params(labelsize=fontsize)
 
     if not np.isnan(ymin):
         plt.ylim(bottom=ymin)
     if not np.isnan(ymax):
         plt.ylim(top=ymax)
 
-    
-    plt.xlabel('Distance (km)', fontsize = fontsize)
-    plt.ylabel('Density (cars/km)', fontsize = fontsize)
-    plt.yticks(np.arange(0.7, 0.85, 0.05) ,fontsize = fontsize)
-    plt.xticks(np.arange(0.0, 20.1, 5.0), fontsize = fontsize)
+    plt.xlabel('Distance [km]', fontsize=fontsize)
+    plt.ylabel(r'Density $[\frac{cars}{km}]$', fontsize=fontsize)
+    plt.yticks(np.arange(0.7, 0.85, 0.05), fontsize=fontsize)
+    plt.xticks(np.arange(0.0, 20.1, 5.0), fontsize=fontsize)
     #plt.legend(fontsize = fontsize)
     plt.tight_layout()
     #tikzplotlib.clean_figure()
     #tikzplotlib.save(std_path + "test1.tikz")
+    if save:
+        plt.savefig('figures/traffic_motivation.png')
     plt.show()
 
 

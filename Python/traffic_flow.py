@@ -27,15 +27,16 @@ method = 'Lax-Wendsdroff from lecture'
 #name_of_init = 'two step function'
 #name_of_init = 'police problem'
 name_of_init = 'police problem 2'
+#name_of_init = 'police problem 3'
 #name_of_init = 'cos function'
 #name_of_init = 'cos function 2'
 
 
 c = 1
 
-T = 20.00
+T = 20.
 X = 20
-h = 0.01
+h = 0.0025
 
 '------------------ SOLVE THE PDE ---------------------------------------------------------------------------------------------'
 
@@ -46,10 +47,10 @@ f, f_prime, speed = init.get_problemfunction(name_of_problem, c=c)
 sol = step.solve_problem(method, U_0, X, T, h, k, x_step, t_step, f, f_prime)
 
 '------------------ PLOT SOLUTION ---------------------------------------------------------------------------------------------'
-num = 5
+num = 7
 
 if name_of_problem == 'traffic':
-    plot.plot_density(sol, num, X, T, h, k, U_0, c, speed, plot_mode='none')
+    plot.plot_density(sol, num, X, T, h, k, U_0, c, speed, plot_mode='none', save=True)
 elif name_of_problem == 'linear':
     plot.plot_density(sol, num, X, T, h, k, U_0, c, speed, plot_mode='true_sol', ymin=0, ymax=1)
 elif name_of_problem == 'Burger':

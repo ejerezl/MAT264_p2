@@ -25,9 +25,14 @@ def get_initial(name, U=0, X=20, T=100, h=0.01):
         U_0[0, :int(np.floor(x_step/5))] = 0.15
         U_0[0, int(np.floor(x_step/3)):] = 0.15
     elif name == 'police problem 2':
-        U_0[0, int(np.floor(x_step*4/5)):int(np.floor(x_step*10/11))] = 0.85
+        U_0[0, int(np.floor(x_step*4/5)):int(np.floor(x_step*20/21))] = 0.85
         U_0[0, :int(np.floor(x_step*4/5))] = 0.7
-        U_0[0, int(np.floor(x_step*10/11)):] = 0.7
+        U_0[0, int(np.floor(x_step*20/21)):] = 0.7
+    elif name == 'police problem 3':
+        police_length = int(np.floor(x_step)) - int(np.floor(x_step*1/4))
+        U_0[0, int(np.floor(x_step*1/4)):int(np.floor(x_step))] = 0.7 + np.sin(np.linspace(0., np.pi, police_length))**1.5 * 0.125
+        U_0[0, :int(np.floor(x_step*1/4))] = 0.7
+        U_0[0, int(np.floor(x_step)):] = 0.7
     elif name == 'cos function':
         U_0[0, :160] = np.cos(1 * np.arange(0, 160*h, h))**2
     elif name == 'cos function 2':
