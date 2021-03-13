@@ -13,30 +13,30 @@ name_of_problem = 'traffic'
 
 
 '~~~~~~~~~~ SELECT THE METHOD ~~~~~~~~~~'
-#method = 'Lax-Friedrichs'
+method = 'Lax-Friedrichs'
 #method = 'Lax-Wendsdroff'
 #method = 'Lax-Wendsdroff from lecture'
 #method = 'left sided'
 #method = 'right sided'
-method = 'Godunov'
+#method = 'Godunov'
 
 
 '~~~~~~~~~~ SELECT THE INITIAL DATA ~~~~~~~~~~'
 #name_of_init = 'ferry problem'
 #name_of_init = 'traffic jam'
 #name_of_init = 'two step function'
-#name_of_init = 'police problem'
+name_of_init = 'police problem'
 #name_of_init = 'police problem 2'
-name_of_init = 'police problem 3'
+#name_of_init = 'police problem 3'
 #name_of_init = 'cos function'
 #name_of_init = 'cos function 2'
 
 
 c = 1
 
-T = 8.0025
+T = 15
 X = 20
-h = 0.0025
+h = 0.01
 
 '------------------ SOLVE THE PDE ---------------------------------------------------------------------------------------------'
 

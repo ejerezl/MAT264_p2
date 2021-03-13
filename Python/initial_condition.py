@@ -21,9 +21,9 @@ def get_initial(name, U=0, X=20, T=100, h=0.01):
         U_0[0, :int(np.floor(x_step/5))] = 0.9
         U_0[0, x_step - int(np.floor(x_step/5)):] = 0.9
     elif name == 'police problem':
-        U_0[0, int(np.floor(x_step/5)):int(np.floor(x_step/3))] = 0.5
-        U_0[0, :int(np.floor(x_step/5))] = 0.15
-        U_0[0, int(np.floor(x_step/3)):] = 0.15
+        U_0[0, int(np.floor(x_step/25)):int(np.floor(x_step/6))] = 0.5
+        U_0[0, :int(np.floor(x_step/25))] = 0.15
+        U_0[0, int(np.floor(x_step/6)):] = 0.15
     elif name == 'police problem 2':
         U_0[0, int(np.floor(x_step*4/5)):int(np.floor(x_step*20/21))] = 0.85
         U_0[0, :int(np.floor(x_step*4/5))] = 0.7

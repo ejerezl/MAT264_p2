@@ -3,7 +3,11 @@ import matplotlib.pyplot as plt
 import plotter as plot
 import initial_condition as init
 import conversation_laws as step
+import os
+import matplotlib
 
+cwd = os.getcwd()
+plt.style.use(cwd + '/poster.mplstyle')
 
 '~~~~~~~~~~ SELECT THE PROBLEM FUNCTIONS ~~~~~~~~~~'
 name_of_problem = 'traffic'
@@ -16,16 +20,16 @@ name_of_problem = 'traffic'
 #name_of_init = 'ferry problem'
 #name_of_init = 'traffic jam'
 #name_of_init = 'two step function'
-#name_of_init = 'police problem'
+name_of_init = 'police problem'
 #name_of_init = 'police problem 2'
-name_of_init = 'police problem 3'
+#name_of_init = 'police problem 3'
 #name_of_init = 'cos function'
 #name_of_init = 'cos function 2'
 
 
 c = 1
 
-T = 8.0025
+T = 15
 X = 20
 h = 0.01
 
@@ -42,10 +46,23 @@ for method in methods:
 
 
 '------------------ PLOT SOLUTION ---------------------------------------------------------------------------------------------'
+'PLOT SOLUTION'
+col_span = 1
+save = True
+if col_span == 2:
+    lw = 3
+    matplotlib.rcParams['figure.figsize'] = (14.78636, 11.089770003)
+elif col_span == 1:
+    lw = 2
+    matplotlib.rcParams['figure.figsize'] = (6.8025, 5.101875001)
+
 i = 0
+x_steplist = np.arange(0, X, h)
 for method in methods:
-    plt.plot(sols[i], label = method) #Plotting the solution for each method
+    plt.plot(x_steplist, sols[i][-1], label='\\rmfamily ' + method, linewidth=lw) #Plotting the solution for each method
     i += 1
+
+plt.xlim([10, 20])
 
 plt.legend()
 plt.show()
