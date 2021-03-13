@@ -16,9 +16,9 @@ name_of_problem = 'traffic'
 #name_of_init = 'ferry problem'
 #name_of_init = 'traffic jam'
 #name_of_init = 'two step function'
-#name_of_init = 'police problem'
+name_of_init = 'police problem'
 #name_of_init = 'police problem 2'
-name_of_init = 'police problem 3'
+#name_of_init = 'police problem 3'
 #name_of_init = 'cos function'
 #name_of_init = 'cos function 2'
 
@@ -44,7 +44,7 @@ for method in methods:
 '------------------ PLOT SOLUTION ---------------------------------------------------------------------------------------------'
 i = 0
 for method in methods:
-    plt.plot(sols[i], label = method) #Plotting the solution for each method
+    plt.plot(sols[i][-1], label = method) #Plotting the solution for each method
     i += 1
 
 plt.legend()

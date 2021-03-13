@@ -24,8 +24,26 @@ name_of_init = 'police problem'
 #name_of_init = 'cos function 2'
 
 
+
 c = 1
+
 T = 20
+X = 20
+h = 0.01
+
+'------------------ SOLVE THE PDE  -----------------------------------------------------------------------------------------'
+
+X, h, x_step, T, k, t_step, U_0 = init.get_initial(name_of_init, U=0, X=X, T=T, h=h)
+f, f_prime, speed = init.get_problemfunction(name_of_problem, c=c)
+sol_laxF= step.solve_problem('Lax-Friedrichs', U_0, X, T, h, k, x_step, t_step, f, f_prime)
+
+X, h, x_step, T, k, t_step, U_0 = init.get_initial(name_of_init, U=0, X=X, T=T, h=h)
+f, f_prime, speed = init.get_problemfunction(name_of_problem, c=c)
+sol_laxW_l = step.solve_problem('Lax-Wendsdroff from lecture', U_0, X, T, h, k, x_step, t_step, f, f_prime)
+
+X, h, x_step, T, k, t_step, U_0 = init.get_initial(name_of_init, U=0, X=X, T=T, h=h)
+f, f_prime, speed = init.get_problemfunction(name_of_problem, c=c)
+sol_Godu = step.solve_problem('Godunov', U_0, X, T, h, k, x_step, t_step, f, f_prime)
 
 
 '------------------ PLOT SOLUTION ---------------------------------------------------------------------------------------------'
@@ -89,7 +107,8 @@ plt.legend(bbox_to_anchor=(0., -0.25, 1., .102), loc='upper left',
             ncol=2, mode="expand", borderaxespad=0., handlelength=1., fontsize=21.6)
 plt.tight_layout()
 if save:
-    plt.savefig('figures/plot.png', dpi=300)
+    plt.savefig('figures/error_over_time.png', dpi=300)
 plt.show()
+
 
 
