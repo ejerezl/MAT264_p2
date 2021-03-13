@@ -11,11 +11,6 @@ import os
 cwd = os.getcwd()
 plt.style.use(cwd + '/poster.mplstyle')
 
-
-'~~~~~~~~~~ SELECT THE TYPE OF CONVERGENCE ~~~~~~~~~~'
-type_of_convergence = 'error'
-#type_of_convergence = 'runtime'
-
 '~~~~~~~~~~ SELECT THE PROBLEM FUNCTIONS (only linear possible) ~~~~~~~~~~'
 name_of_problem = 'linear'
 
@@ -31,53 +26,10 @@ name_of_init = 'police problem'
 
 c = 1
 T = 20
-'------------------ SOLVE THE PDE ---------------------------------------------------------------------------------------------'
 
-'~~~~~ LAX-FRIEDRICHS ~~~~~'
-
-X, h, x_step, T, k, t_step, U_0 = init.get_initial(name_of_init, U=0, X=20, T = T, h=0.01)
-
-f, f_prime, speed = init.get_problemfunction(name_of_problem, c=c)
-
-start = timeit.timeit()
-sol_laxF = step.solve_problem('Lax-Friedrichs', U_0, X, T, h, k, x_step, t_step, f, f_prime)
-end = timeit.timeit()
-t_laxf = (end-start)
-
-
-"""
-'~~~~~ LAX-WENDROF ~~~~~'
-X, h, x_step, T, k, t_step, U_0 = init.get_initial(name_of_init, U=0, X=20, T=25.01, h=0.01)
-
-f, f_prime, speed = init.get_problemfunction(name_of_problem, c=c)
-
-start = timeit.timeit()
-sol_laxW = step.solve_problem('Lax-Wendsdroff', U_0, X, T, h, k, x_step, t_step, f, f_prime)
-end = timeit.timeit()
-t_laxW = (end-start)
-"""
-
-'~~~~~ LAX-WENDROF from lecture ~~~~~'
-X, h, x_step, T, k, t_step, U_0 = init.get_initial(name_of_init, U=0, X=20, T=T, h=0.01)
-
-f, f_prime, speed = init.get_problemfunction(name_of_problem, c=c)
-
-start = timeit.timeit()
-sol_laxW_l = step.solve_problem('Lax-Wendsdroff from lecture', U_0, X, T, h, k, x_step, t_step, f, f_prime)
-end = timeit.timeit()
-t_laxW_l = (end-start)
-
-'~~~~~ Godunov ~~~~~'
-X, h, x_step, T, k, t_step, U_0 = init.get_initial(name_of_init, U=0, X=20, T=T, h=0.01)
-
-f, f_prime, speed = init.get_problemfunction(name_of_problem, c=c)
-
-start = timeit.timeit()
-sol_Godu = step.solve_problem('Godunov', U_0, X, T, h, k, x_step, t_step, f, f_prime)
-end = timeit.timeit()
-t_Godu = (end-start)
 
 '------------------ PLOT SOLUTION ---------------------------------------------------------------------------------------------'
+
 
 t_max_index = np.shape(sol_laxF)[0] - 1
 time_list = []
@@ -139,9 +91,5 @@ plt.tight_layout()
 if save:
     plt.savefig('figures/plot.png', dpi=300)
 plt.show()
-
-
-
-
 
 
