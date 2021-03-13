@@ -15,10 +15,10 @@ name_of_problem = 'traffic'
 '~~~~~~~~~~ SELECT THE METHOD ~~~~~~~~~~'
 #method = 'Lax-Friedrichs'
 #method = 'Lax-Wendsdroff'
-method = 'Lax-Wendsdroff from lecture'
+#method = 'Lax-Wendsdroff from lecture'
 #method = 'left sided'
 #method = 'right sided'
-#method = 'Godunov'
+method = 'Godunov'
 
 
 '~~~~~~~~~~ SELECT THE INITIAL DATA ~~~~~~~~~~'
@@ -50,7 +50,7 @@ sol = step.solve_problem(method, U_0, X, T, h, k, x_step, t_step, f, f_prime)
 num = 7
 
 if name_of_problem == 'traffic':
-    plot.plot_density(sol, num, X, T, h, k, U_0, c, speed, plot_mode='none', save=True)
+    plot.plot_density(sol, num, X, T, h, k, U_0, c, speed, plot_mode='none')#, save=True)
 elif name_of_problem == 'linear':
     plot.plot_density(sol, num, X, T, h, k, U_0, c, speed, plot_mode='true_sol', ymin=0, ymax=1)
 elif name_of_problem == 'Burger':
