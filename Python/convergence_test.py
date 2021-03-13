@@ -93,8 +93,3 @@ if save:
 plt.show()
 
 
-
-
-
-
->>>>>>> 84a43eb82a13c5e1c1ec1b75dc3af14d2d02cf86
