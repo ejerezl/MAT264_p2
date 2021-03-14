@@ -25,7 +25,7 @@ This equation must be augmented with initial and boundary conditions. The easies
 \begin{align*}
 u(x, 0) = u_0(x)
 \end{align*}
-Flux functions are commonly nonlinear functions, leading to nonlinear systems of PDEs that, in general, the exact solution is unknown. Hence numerical methods are used, to compute an approximation.
+Flux functions are commonly nonlinear functions, leading to nonlinear systems of PDEs where, in general, the exact solution is unknown. Hence numerical methods are used, to compute an approximation.
 
 \end{column}
 \begin{column}{0.5\textwidth - 1.5cm}
@@ -84,7 +84,7 @@ As $\mu = \frac{a}{6}h^2(\nu^2 - 1)$ and since $a > 0$ and for stability $|\nu| 
 \textbf{Numerical Analysis}
 \vspace{0.5cm}
 
-In the following the approximations of the Lax-Wendroff method will be presented in comprehension to the Lax-Friedrich and Godunov method.
+In the following the approximations of the Lax-Wendroff method will be presented in comparison to the Lax-Friedrich and Godunov method.
 
 \end{column}
 \begin{column}{0.5\textwidth - 1.5cm}
