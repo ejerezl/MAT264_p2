@@ -28,7 +28,7 @@ name_of_init = 'police problem'
 c = 1
 
 T = 20
-X = 20
+X = 40
 h = 0.01
 
 '------------------ SOLVE THE PDE  -----------------------------------------------------------------------------------------'
@@ -98,13 +98,15 @@ plt.plot(time_list, error_laxF, label='\\rmfamily Lax Friedrich', color='green',
 plt.plot(time_list, error_Godu, label='\\rmfamily Godunov', color='darkorange', linewidth=lw)
 plt.plot(time_list, error_laxW_l, label='\\rmfamily Lax Wendroff', color='navy', linewidth=lw)
 
-plt.title('\\rmfamily\\bfseries Error over time', pad=15)
+#plt.title('\\rmfamily\\bfseries Error over time', pad=15)
+plt.title('\\rmfamily\\bfseries ', pad=15, fontsize=21.6)
 plt.xlabel('\\rmfamily t')
 plt.gca().xaxis.set_label_coords(1.05, -0.1)
 plt.ylabel('\\rmfamily Error', rotation=0)
-plt.gca().yaxis.set_label_coords(-0.15, 0.9)
+plt.gca().yaxis.set_label_coords(-0.15, 0.95)
 plt.legend(bbox_to_anchor=(0., -0.25, 1., .102), loc='upper left',
             ncol=2, mode="expand", borderaxespad=0., handlelength=1., fontsize=21.6)
+plt.tight_layout()
 
 if save:
     plt.savefig('figures/error_over_time.png', dpi=300)

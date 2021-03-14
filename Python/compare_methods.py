@@ -9,11 +9,11 @@ import os
 cwd = os.getcwd()
 plt.style.use(cwd + '/poster.mplstyle')
 
-save = False
+save = True
 '~~~~~~~~~~ SELECT THE PROBLEM FUNCTIONS ~~~~~~~~~~'
-name_of_problem = 'traffic'
+#name_of_problem = 'traffic'
 #name_of_problem = 'linear'
-#name_of_problem = 'Burger'
+name_of_problem = 'Burger'
 #name_of_problem = 'Buckley-Leverett'
 
 
@@ -52,7 +52,7 @@ true_sol = step.get_true_linear_sol(U_0, datapoint, h, k, c)[0]
 '------------------ PLOT SOLUTION ---------------------------------------------------------------------------------------------'
 'PLOT SOLUTION'
 col_span = 1
-save = True
+save = False
 if col_span == 2:
     lw = 3
     matplotlib.rcParams['figure.figsize'] = (14.78636, 11.089770003)
@@ -73,16 +73,20 @@ if name_of_problem == 'traffic':
 
 elif name_of_problem == 'linear':
     plt.plot(x_steplist, true_sol, ':', label='\\rmfamily true solution', linewidth=lw, color='dimgray', zorder=0)
-    plt.xlim([4.4, 7.5])
+    #plt.xlim([4.4, 7.5])
+    plt.xlim([4.4, 7.85])
 
 if name_of_problem == 'Burger':
     plt.xlim([1, 5.2])
 
-plt.title('\\rmfamily\\bfseries Solutions', pad=15)
+#plt.title('\\rmfamily\\bfseries Solutions', pad=15)
+plt.title('\\rmfamily\\bfseries ', pad=15,  fontsize=21.6)
 plt.xlabel('\\rmfamily Space')
-plt.gca().xaxis.set_label_coords(0.5, -0.175)
-plt.ylabel('\\rmfamily Density')
-plt.legend(bbox_to_anchor=(0., -0.425, 1., .102), loc='upper left',
+#plt.gca().xaxis.set_label_coords(0.5, -0.175)
+plt.gca().xaxis.set_label_coords(0.89, -0.1)
+plt.ylabel('\\rmfamily Density', rotation=0)
+plt.gca().yaxis.set_label_coords(-0.15, 0.95)
+plt.legend(bbox_to_anchor=(0., -0.35, 1., .102), loc='upper left',
             ncol=2, mode="expand", borderaxespad=0., handlelength=1., fontsize=21.6)
 
 if save:
