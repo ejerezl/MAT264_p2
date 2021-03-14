@@ -45,6 +45,7 @@
 
 \usepackage{subcaption}
 
+\usepackage{cleveref}
 
 \title{The Lax-Wendroff scheme}
 \author
@@ -108,7 +109,7 @@ Hyperbolic conservation laws are time-dependent systems of partial differential 
 Where $u(x,t)$ is a vector of conserved quantities (could be mass, momentum, heat,..) while $f(u)$ is the flux function.
 
 Flux functions are commonly nonlinear functions, leading to nonlinear systems of PDEs where, in general, the exact solution is unknown. Hence numerical methods are used, to compute an approximation. \\
-This can be used to simulate traffic jams as we can see in the graph . In this case cars are moving from left to right, but as time pass the traffic jam moves in the other direction. 
+This can be used to simulate traffic jams as we can see in \cref{img:traffic_flow_motivation}. In this case cars are moving from left to right, but as time pass the traffic jam moves in the other direction. 
 
 \end{column}
 \begin{column}{0.5\textwidth - 1.5cm}
