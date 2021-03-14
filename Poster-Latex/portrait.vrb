@@ -48,11 +48,15 @@ where
 U_{j+\frac{1}{2}}^{n+\frac{1}{2}} =&~ \frac{1}{2} (U_j^n + U_{j+1}^n)\\
 &- \frac{k}{2h}[f(U_{j+1}^n) - f(U_j^n)]
 \end{align*}
-while the step sizes are in the following considered to be controlled by $\frac{k}{h} = const$. The computation of the next time step can be written as a function of the solution of the current timestep by $U^{n+1} = \mathcal{H}(U^n)$. This notation can be used to define the local truncation error of a method by
-\begin{align*}
-L_k(x, t) = \frac{u(x, t+k) - \mathcal{H}(u(\cdot, t); x)}{k}
-\end{align*}
-contingent on the used step size in time $k$. This error will now be considered in the linear advection equation with $a > 0$. By Taylor expansion around $u(x, t)$ and some simplifications this yields to:
+while the step sizes are in the following considered to be controlled by $\frac{k}{h} = const$.
+%The computation of the next time step can be written as a function of the solution of the current timestep by $U^{n+1} = \mathcal{H}(U^n)$. This notation can be used to define the local truncation error of a method by
+%\begin{align*}
+%L_k(x, t) = \frac{u(x, t+k) - \mathcal{H}(u(\cdot, t); x)}{k}
+%\end{align*}
+%contingent on the used step size in time $k$. This error will now be considered in the linear advection equation with $a > 0$. By Taylor expansion around $u(x, t)$ and some simplifications this yields to:
+
+\vspace{0.2cm}
+Computing the local truncation error of the Lax-Wendroff method we obtain
 \begin{align*}
 L_k(x, t) = \frac{a}{6}(a^2 k^2 - h^2)u_{xxx} + \mathcal{O}(h^3)
 \end{align*}
@@ -70,7 +74,7 @@ The local truncation error also leads to the modified equation which is given as
 u_t + a u_x &= \frac{a}{6} (a^2 k^2 - h^2) u_{xxx}\\
 &:= \mu u_{xxx}
 \end{align*}
-This is also a dispersive equation. Regarding the theory of dispersive waves a solution $u(x, t)$ can be represented in Fourier space. By isolating each wavenumber $\xi$ to apply solutions of the form $u(x,t) = e^{i(\xi x - c(\xi)t)}$ to the linear advection equation yields to the dispersion relation:
+This is also a dispersive equation and a solution $u(x, t)$ of it can be represented in Fourier space. By isolating each wavenumber $\xi$ to apply solutions of the form $u(x,t) = e^{i(\xi x - c(\xi)t)}$ to the linear advection equation yields to the dispersion relation:
 \begin{align*}
 c(\xi) = a\xi + \mu \xi^3
 \end{align*}
@@ -90,34 +94,18 @@ In the following the approximations of the Lax-Wendroff method will be presented
 \begin{column}{0.5\textwidth - 1.5cm}
 \vspace*{-14.5cm}
 
-    \textbf{Things to avoid}
-\vspace{0.5cm}
-
-    Do not use colorful backgrounds with super-imposed text, low-resolution images or L O N G lines of text.
-        \vspace{1.5cm}
-
-    \fbox{\small\begin{varwidth}{\textwidth}Do not use boxes like this unless they are necessary. This box is used to present content relating to the illustration below.\end{varwidth}}
     \vspace{1.5cm}
+
+    \includegraphics{fig/linear_compare.png}
 
     \includegraphics{fig/error_over_time.png}
 
-    \textbf{Logos}
+    \includegraphics{fig/traffic_compare.png}
 
-    Leave out unnecessary institutional “brands” or logos. The only logo used in this template is the UiB logo signalizing that this poster reflects research carried out at this institution.
-\vspace{0.2cm}
+    \includegraphics{fig/burger_compare.png}
 
-    A research group may have members from various institutions and receive funding from different sources. This should be stated in the acknowledgment section unless you are bound by contract to include the logo.
-\vspace{0.2cm}
 
-    Including a variety of logos only add to visual confusion!
-    \vspace{5cm}
 
-    {\scriptsize
-    \textbf{REFERENCES}
-
-    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-
-    Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse
 
     }
 \end{column}
