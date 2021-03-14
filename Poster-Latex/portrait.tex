@@ -144,7 +144,8 @@ The method can be seen as a concatenation of the Lax-Friderich scheme.
 \vspace{0.5cm}
 Computing the local truncation error of the Lax-Wendroff method we obtain
 \begin{align*}
-L_k(x, t) = \frac{a}{6}(a^2 k^2 - h^2)u_{xxx} + \mathcal{O}(h^3)
+L_k(x, t) = &\frac{a}{6}(a^2 k^2 - h^2)u_{xxx} \\
+&+ \mathcal{O}(h^3)
 \end{align*}
 As $L_k(x,t) = \mathcal{O}(h^2)$ the method is consistent and has order 2. Additional for stability the condition $|\nu| < 1$ where $\nu = a\frac{k}{h}$ is the Courant number must be fulfilled. 
 In the case of an linear advection equation the convergence of a method follows from consistency and stability by the Lax equivalence theorem. In the nonlinear case Lax and Wendroff proved that a consistent numerical method with bounded solutions always converges to a weak solution of the equation.
