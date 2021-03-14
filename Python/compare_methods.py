@@ -9,7 +9,7 @@ import os
 cwd = os.getcwd()
 plt.style.use(cwd + '/poster.mplstyle')
 
-
+save = False
 '~~~~~~~~~~ SELECT THE PROBLEM FUNCTIONS ~~~~~~~~~~'
 name_of_problem = 'traffic'
 #name_of_problem = 'linear'
@@ -30,7 +30,7 @@ name_of_init = 'police problem'
 
 c = 1
 
-T = 15.
+T = 15
 X = 20
 h = 0.1
 
@@ -58,12 +58,23 @@ elif col_span == 1:
     matplotlib.rcParams['figure.figsize'] = (6.8025, 5.101875001)
 
 i = 0
+colors = ['darkorange', 'navy', 'green']
+name = ['Godunov', 'Lax-Wendroff', 'Lax-Friedrichs']
 x_steplist = np.arange(0, X, h)
-for method in methods:
-    plt.plot(x_steplist, sols[i][-1], label='\\rmfamily ' + method, linewidth=lw) #Plotting the solution for each method
+for method in name:
+    plt.plot(x_steplist, sols[i][-1], label='\\rmfamily ' + method, linewidth=lw, color = colors[i]) #Plotting the solution for each method
     i += 1
 
 plt.xlim([8, 20])
 
-plt.legend()
+plt.title('\\rmfamily\\bfseries Solutions', pad=15)
+plt.xlabel('\\rmfamily Space')
+plt.gca().xaxis.set_label_coords(0.5, -0.25)
+plt.ylabel('\\rmfamily Density')
+plt.legend(bbox_to_anchor=(0., -0.5, 1., .102), loc='upper left',
+            ncol=2, mode="expand", borderaxespad=0., handlelength=1., fontsize=21.6)
+
+if save:
+    plt.savefig('figures/compare_methods.png', dpi=300)
 plt.show()
+
