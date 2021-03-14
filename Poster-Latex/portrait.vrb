@@ -67,7 +67,7 @@ u_t + a u_x &= \frac{a}{6} (a^2 k^2 - h^2) u_{xxx}\\
 \end{column}
 \begin{column}{0.5\textwidth - 1.5cm}
 \begin{column}{0.5\textwidth - 1.5cm}
-\vspace*{-1.5cm}
+\vspace*{-1.7cm}
 
 
 This is also a dispersive equation and a solution $u(x, t)$ of it can be represented in Fourier space. By isolating each wavenumber $\xi$ to apply solutions of the form $u(x,t) = e^{i(\xi x - c(\xi)t)}$ to the linear advection equation yields to the dispersion relation:
@@ -78,7 +78,7 @@ Based on this relation its possible to calculate the group velocity $c’(\xi)$ 
 \begin{align*}
 c'(\xi) = a + 3\mu \xi^2
 \end{align*}
-As $\mu = \frac{a}{6}h^2(\nu^2 - 1)$ and since $a > 0$ and for stability $|\nu| < 1$ the group velocity $c’(\xi)$ is smaller than $a$ for all $\xi$, but tens to $a$ as $h\rightarrow0$. It follows that the scheme leads to an oscillatory wave train lagging behind the discontinuity, which is traveling with speed $a$. This can also later be seen later in the numerical experiments.
+As $\mu = \frac{a}{6}h^2(\nu^2 - 1)$ and since $a > 0$ and for stability $|\nu| < 1$ the group velocity $c’(\xi)$ is smaller than $a$ for all $\xi$, but tens to $a$ as $h\rightarrow0$. It follows that the scheme leads to an oscillatory wave train lagging behind the discontinuity, which is traveling with speed $a$. This can also be seen later in the numerical experiments.
 
 \vspace{0.5cm}
 \textbf{Numerical Analysis}
@@ -89,22 +89,27 @@ In the following the approximations of the Lax-Wendroff method will be presented
 \vspace{0.5cm}
 Applying the methods to the linear advection equation yields to approximations shown in \cref{img:linar_comprehension}.
 
+\begin{figure}[h]
+	\includegraphics{fig/linear_compare.png}
+	\caption{Approximations for the linear advection equation after some time.}
+	\label{img:linar_comprehension}
+\end{figure}
+
+As comented before the Lax-Wendroff scheme oscilates in front of the discontinuity of the true solution. But on the other hand the discontinuity is approximated better what leads to a smaller error which is shown in \cref{img:error_over_time}. Also notice that the Lax-Friedrich does not reach the
+
 \end{column}
 \begin{column}{0.5\textwidth - 1.5cm}
-\vspace*{-1.5cm}
+	\vspace*{-1.7cm}
+	
+total hight of the true solution resultig in a bad approximation.
 
-    \vspace{1.5cm}
-
-    \begin{figure}
-    	\includegraphics{fig/linear_compare.png}
-    	\caption{Approximations for the linear advection equaion after some time.}
-    	\label{img:linar_comprehension}
-    \end{figure}
+\vspace{0.5cm}
+Looking deeper into \cref{img:error_over_time} we can confirm that the Lax-Wendroff methods has the lowest error as expected due to its high order.
 
     \begin{figure}
     	\includegraphics{fig/error_over_time.png}
     	\caption{Error of the considdered scheme over time.}
-    	\label{img:error_over_tim}
+    	\label{img:error_over_time}
     \end{figure}
 
 	\begin{figure}
