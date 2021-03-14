@@ -12,37 +12,41 @@
 \textbf{Abstract}
 \vspace{0.5cm}
 
-The main topic of this poster is to introduce the Lax-Wendroff scheme for solving the hyperbolic conservations laws. In concrete, it focus on the 1 space dimensional advection equation for different flows to illustrate how the scheme works, and to compare it with other numerical methods. This will lead us to conclude that the Lax-Wendroff scheme works, in general terms, better than the other ones.
+The main topic of this poster is to introduce the Lax-Wendroff scheme for solving the hyperbolic conservations laws. In concrete, it focus on the 1 space dimensional advection equation for different flows to illustrate how the scheme works and to compare it with other numerical methods. This will lead us to conclude that the Lax-Wendroff scheme works better than the other ones.
 
 \vspace{0.5cm}
 \textbf{Introduction}
 \vspace{0.5cm}
 
-Hyperbolic conservation laws are time-dependent systems of partial differential equations that describes the conservation of some quantities. The equation is given as:
+Hyperbolic conservation laws are time-dependent systems of PDE's that describes the conservation of some quantities. The equation is given as:
 \begin{align*}
     u_t + f(u)_x = 0
 \end{align*}
-Where $u(x,t)$ is a vector of conserved quantities (could be mass, momentum, heat,..) while $f(u)$ is the flux function.
+Where $u(x,t)$ is the conserved quantity (could be mass, momentum, heat,..) while $f(u)$ is the flux function.
 
-Flux functions are commonly nonlinear functions, leading to nonlinear systems of PDEs where, in general, the exact solution is unknown. Hence numerical methods are used, to compute an approximation. \\
+Flux functions are commonly nonlinear, leading to nonlinear systems of PDEs where, in general, the exact solution is unknown. Hence numerical methods are used, to compute an approximation.
+
+\vspace{0.5cm}
 This can be used to simulate traffic jams as we can see in \cref{img:traffic_flow_motivation}. In this case cars are moving from left to right, but as time pass the traffic jam moves in the other direction.
 
-\end{column}
-\begin{column}{0.5\textwidth - 1.5cm}
+\vspace{0.5cm}
 \textbf{The Lax-Wendroff Method}
-\vspace{-1cm}
 
+\vspace{0.5cm}
 The general formula of the scheme is given by:
 \begin{align*}
 &U_j^{n+1} = U_j^n\\
 &- \frac{k}{h}\left(f\left(U_{j+\frac{1}{2}}^{n+\frac{1}{2}}\right) - f\left(U_{j-\frac{1}{2}}^{n+\frac{1}{2}}\right)\right)
 \end{align*}
+
+\end{column}
+\begin{column}{0.5\textwidth - 1.5cm}
 where $k$ stepsize in time, $h$ stepsize in space and
 \begin{align*}
 U_{j+\frac{1}{2}}^{n+\frac{1}{2}} =&~ \frac{1}{2} (U_j^n + U_{j+1}^n)\\
 &- \frac{k}{2h}[f(U_{j+1}^n) - f(U_j^n)].
 \end{align*}
-The step sizes are in the following considered to be controlled by $\frac{k}{h} = const$. This fact is motivated by the CFL condition of the linear case ($u_t + au_x = 0$), where we need $|a|\frac{k}{h} \leq 1$.
+The step sizes are in the following considered to be controlled by $\frac{k}{h} = const$. This fact is motivated by the CFL condition of the linear case ($u_t + au_x = 0$), where we need $\frac{k}{h} \leq \frac{1}{|a|}$.
 The method can be seen as a concatenation of the Lax-Friderich scheme.
 %The computation of the next time step can be written as a function of the solution of the current timestep by $U^{n+1} = \mathcal{H}(U^n)$. This notation can be used to define the local truncation error of a method by
 %\begin{align*}
@@ -51,7 +55,7 @@ The method can be seen as a concatenation of the Lax-Friderich scheme.
 %contingent on the used step size in time $k$. This error will now be considered in the linear advection equation with $a > 0$. By Taylor expansion around $u(x, t)$ and some simplifications this yields to:
 
 \vspace{0.5cm}
-Computing the local truncation error of the Lax-Wendroff method we obtain
+Computing the local truncation error of Lax-Wendroff yields
 \begin{align*}
 L_k(x, t) = &\frac{a}{6}(a^2 k^2 - h^2)u_{xxx} \\
 &+ \mathcal{O}(h^3)
@@ -64,14 +68,15 @@ u_t + a u_x &= \frac{a}{6} (a^2 k^2 - h^2) u_{xxx}\\
 &:= \mu u_{xxx}
 \end{align*}
 
+This is also a dispersive equation and a solution $u(x, t)$ of it can be represented in Fourier space.  By isolating each wavenumber $\xi$ to apply solutions of the form $u(x,t) = e^{i(\xi x - c(\xi)t)}$ to the linear
+
     \end{column}
 \end{column}
 \begin{column}{0.5\textwidth - 1.5cm}
 \begin{column}{0.5\textwidth - 1.5cm}
 \vspace*{-1.7cm}
 
-
-This is also a dispersive equation and a solution $u(x, t)$ of it can be represented in Fourier space. By isolating each wavenumber $\xi$ to apply solutions of the form $u(x,t) = e^{i(\xi x - c(\xi)t)}$ to the linear advection equation yields to the dispersion relation:
+advection equation yields the dispersion relation:
 \begin{align*}
 c(\xi) = a\xi + \mu \xi^3
 \end{align*}
@@ -85,7 +90,7 @@ As $\mu = \frac{a}{6}h^2(\nu^2 - 1)$ and since $a > 0$ and for stability $|\nu| 
 \textbf{Numerical Analysis}
 \vspace{0.5cm}
 
-In the following the approximations of the Lax-Wendroff method will be presented in comparison to the Lax-Friedrich and Godunov method.
+In the following the approximations of the Lax-Wendroff method will be presented in comparison to Lax-Friedrich and Godunov.
 
 \vspace{0.5cm}
 Applying the methods to the linear advection equation yields to approximations shown in \cref{img:linar_comprehension}.
@@ -98,14 +103,14 @@ Applying the methods to the linear advection equation yields to approximations s
 
 As comented before the Lax-Wendroff scheme oscilates in front of the discontinuity of the true solution. But on the other hand the discontinuity is approximated better what leads to a smaller error which is shown in \cref{img:error_over_time}. Also notice that the Lax-Friedrich does not reach the
 
+total hight of the true solution resulting in a bad approximation.
+
+Comparing the runtime of the methods to compute \cref{img:linar_comprehension} turns out that the Gudonov's one is the slowest with a big difference to the others.
+
 \end{column}
 \begin{column}{0.5\textwidth - 1.5cm}
 	\vspace*{-1.7cm}
 	
-total hight of the true solution resultig in a bad approximation.
-
-Comparing the runtime of the methods to compute \cref{img:linar_comprehension} turns out that the Gudonov's one is the slowest with a big difference to the others.
-
 \vspace{0.5cm}
 Looking deeper into \cref{img:error_over_time} we can confirm that the Lax-Wendroff methods has the lowest error as expected due to its high order.
 
@@ -135,8 +140,9 @@ We will now look into some non-linear advection equations. The traffic flow and 
 \textbf{Conclusion}
 
 \vspace{0.5cm}
-With the Lax-Wendroff method it is possible to get accurate approximations of a discontinuity in short runtime. So we can conclude that the it can compete with the Godonov one, which is very used nowadays.
+With the Lax-Wendroff method it is possible to get accurate approximations of a discontinuity in short runtime. So we can conclude that the it can compete with the Godunov one, which is very used nowadays.
 
+    \vspace{0.5cm}
     \textbf{\scriptsize{References}}
     \vspace{0.3cm}
     \nocite{*}
