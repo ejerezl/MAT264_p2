@@ -5,15 +5,16 @@ import initial_condition as init
 import conversation_laws as step
 import matplotlib
 import os
+import time
 
 cwd = os.getcwd()
 plt.style.use(cwd + '/poster.mplstyle')
 
 save = True
 '~~~~~~~~~~ SELECT THE PROBLEM FUNCTIONS ~~~~~~~~~~'
-#name_of_problem = 'traffic'
+name_of_problem = 'traffic'
 #name_of_problem = 'linear'
-name_of_problem = 'Burger'
+#name_of_problem = 'Burger'
 #name_of_problem = 'Buckley-Leverett'
 
 
@@ -40,9 +41,13 @@ f, f_prime, speed = init.get_problemfunction(name_of_problem, c=c)
 
 sols = []
 methods = ['Lax-Wendsdroff from lecture', 'Godunov', 'Lax-Friedrichs']
+time_list = []
 '------------------ SOLVE THE PDE WITH ALL METHODS -----------------------------------------------------------------------------------------'
 for method in methods:
+    START = time.time()
     sols.append(step.solve_problem(method, U_0, X, T, h, k, x_step, t_step, f, f_prime))
+    END = time.time()
+    time_list.append(END - START)
 
 
 '----------------- compute true solution ---------------------------------------------------'
@@ -52,13 +57,13 @@ true_sol = step.get_true_linear_sol(U_0, datapoint, h, k, c)[0]
 '------------------ PLOT SOLUTION ---------------------------------------------------------------------------------------------'
 'PLOT SOLUTION'
 col_span = 1
-save = False
+save = True
 if col_span == 2:
     lw = 3
     matplotlib.rcParams['figure.figsize'] = (14.78636, 11.089770003)
 elif col_span == 1:
     lw = 2
-    matplotlib.rcParams['figure.figsize'] = (6.8025, 5.101875001)
+    matplotlib.rcParams['figure.figsize'] = (6.8025, 5.101875001*0.8)
 
 i = 0
 colors = ['navy', 'darkorange', 'green']
@@ -86,10 +91,13 @@ plt.xlabel('\\rmfamily Space')
 plt.gca().xaxis.set_label_coords(0.89, -0.1)
 plt.ylabel('\\rmfamily Density', rotation=0)
 plt.gca().yaxis.set_label_coords(-0.15, 0.95)
-plt.legend(bbox_to_anchor=(0., -0.35, 1., .102), loc='upper left',
-            ncol=2, mode="expand", borderaxespad=0., handlelength=1., fontsize=21.6)
+#plt.legend(bbox_to_anchor=(0., -0.35, 1., .102), loc='upper left',
+#            ncol=2, mode="expand", borderaxespad=0., handlelength=1., fontsize=21.6)
 
 if save:
-    plt.savefig('figures/plot.png', dpi=300)
+    plt.savefig('figures/traffic_comprehension_.png', dpi=300)
 plt.show()
+
+print(methods)
+print(time_list)
 

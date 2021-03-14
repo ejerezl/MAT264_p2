@@ -103,26 +103,38 @@ As comented before the Lax-Wendroff scheme oscilates in front of the discontinui
 	
 total hight of the true solution resultig in a bad approximation.
 
+Comparing the runtime of the methods to compute \cref{img:linar_comprehension} turns out that the Gudonov's one is the slowest with a big difference to the others.
+
 \vspace{0.5cm}
 Looking deeper into \cref{img:error_over_time} we can confirm that the Lax-Wendroff methods has the lowest error as expected due to its high order.
 
     \begin{figure}
     	\includegraphics{fig/error_over_time.png}
-    	\caption{Error of the considdered scheme over time.}
+    	\caption{Error of the considered scheme over time for the problem used in \cref{img:linar_comprehension}.}
     	\label{img:error_over_time}
     \end{figure}
 
-	\begin{figure}
-	    \includegraphics{fig/traffic_compare.png}
-	    \caption{Approximations for the advection equaion with flow $f(u) = u (1 - u^2)$ after some time.}
-	    \label{img:traffic_comprehension}
-	\end{figure}
+We will now look into some non-linear advection equations. The traffic flow and the Burger's equation. The solutions are quite accurate and we can see similar behavior like the oscillations of Lax-Wendroff close to the discontinuity.
 
-	\begin{figure}
-	    \includegraphics{fig/burger_compare.png}
-	    \caption{Approximations for the advection equaion with flow $f(u) = u^2$ after some time.}
-	    \label{img:burger_comprehension}
-	\end{figure}
+\begin{figure}
+	\begin{subfigure}{\textwidth}
+	\includegraphics{fig/traffic_compare_.png}
+	\caption{Traffic equation}
+	\label{img:traffic_comprehension}
+	\end{subfigure}
+
+	\begin{subfigure}{\textwidth}
+		\includegraphics{fig/burger_compare.png}
+		\caption{Burger's equation}
+		\label{img:burger_comprehension}
+	\end{subfigure}
+	\caption{Approximations for the advection equaion with different flows after some time.}
+\end{figure}
+
+\textbf{Conclusion}
+
+\vspace{0.5cm}
+With the Lax-Wendroff method it is possible to get accurate approximations of a discontinuity in short runtime. So we can conclude that the it can compete with the Godonov one, which is very used nowadays.
 
     \textbf{\scriptsize{References}}
     \vspace{0.3cm}
