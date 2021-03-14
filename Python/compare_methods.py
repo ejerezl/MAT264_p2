@@ -30,9 +30,9 @@ name_of_init = 'police problem'
 
 c = 1
 
-T = 8.0025
+T = 15.
 X = 20
-h = 0.01
+h = 0.1
 
 X, h, x_step, T, k, t_step, U_0 = init.get_initial(name_of_init, U=0, X=X, T=T, h=h)
 
@@ -63,7 +63,7 @@ for method in methods:
     plt.plot(x_steplist, sols[i][-1], label='\\rmfamily ' + method, linewidth=lw) #Plotting the solution for each method
     i += 1
 
-plt.xlim([10, 20])
+plt.xlim([8, 20])
 
 plt.legend()
 plt.show()
