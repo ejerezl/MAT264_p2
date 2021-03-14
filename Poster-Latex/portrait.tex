@@ -175,7 +175,10 @@ As $\mu = \frac{a}{6}h^2(\nu^2 - 1)$ and since $a > 0$ and for stability $|\nu| 
 \textbf{Numerical Analysis}
 \vspace{0.5cm}
     
-In the following the approximations of the Lax-Wendroff method will be presented in comprehension to the Lax-Friedrich and Godunov method.
+In the following the approximations of the Lax-Wendroff method will be presented in comparison to the Lax-Friedrich and Godunov method.
+
+\vspace{0.5cm}
+Applying the methods to the linear advection equation yields to approximations shown in \cref{img:linar_comprehension}.
     
 \end{column}
 \begin{column}{0.5\textwidth - 1.5cm}
@@ -183,13 +186,29 @@ In the following the approximations of the Lax-Wendroff method will be presented
 
     \vspace{1.5cm}
     
-    \includegraphics{fig/linear_compare.png}
+    \begin{figure}
+    	\includegraphics{fig/linear_compare.png}
+    	\caption{Approximations for the linear advection equaion after some time.}
+    	\label{img:linar_comprehension}
+    \end{figure}
     
-    \includegraphics{fig/error_over_time.png}
+    \begin{figure}
+    	\includegraphics{fig/error_over_time.png}
+    	\caption{Error of the considdered scheme over time.}
+    	\label{img:error_over_tim}
+    \end{figure}
+   
+	\begin{figure}
+	    \includegraphics{fig/traffic_compare.png}
+	    \caption{Approximations for the advection equaion with flow $f(u) = u (1 - u^2)$ after some time.}
+	    \label{img:traffic_comprehension}
+	\end{figure}
     
-    \includegraphics{fig/traffic_compare.png}
-    
-    \includegraphics{fig/burger_compare.png}
+	\begin{figure}
+	    \includegraphics{fig/burger_compare.png}
+	    \caption{Approximations for the advection equaion with flow $f(u) = u^2$ after some time.}
+	    \label{img:burger_comprehension}
+	\end{figure}
     
     \textbf{\scriptsize{References}}
     \vspace{0.3cm}
