@@ -11,9 +11,9 @@ plt.style.use(cwd + '/poster.mplstyle')
 
 save = False
 '~~~~~~~~~~ SELECT THE PROBLEM FUNCTIONS ~~~~~~~~~~'
-#name_of_problem = 'traffic'
+name_of_problem = 'traffic'
 #name_of_problem = 'linear'
-name_of_problem = 'Burger'
+#name_of_problem = 'Burger'
 #name_of_problem = 'Buckley-Leverett'
 
 
@@ -29,10 +29,6 @@ name_of_init = 'police problem'
 
 
 c = 1
-
-T = 15
-X = 20
-h = 0.1
 
 T = 5
 X = 10
@@ -90,6 +86,6 @@ plt.legend(bbox_to_anchor=(0., -0.425, 1., .102), loc='upper left',
             ncol=2, mode="expand", borderaxespad=0., handlelength=1., fontsize=21.6)
 
 if save:
-    plt.savefig('figures/compare_methods.png', dpi=300)
+    plt.savefig('figures/plot.png', dpi=300)
 plt.show()
 
