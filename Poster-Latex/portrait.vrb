@@ -25,30 +25,25 @@ Hyperbolic conservation laws are time-dependent systems of partial differential 
 Where $u(x,t)$ is a vector of conserved quantities (could be mass, momentum, heat,..) while $f(u)$ is the flux function.
 
 Flux functions are commonly nonlinear functions, leading to nonlinear systems of PDEs where, in general, the exact solution is unknown. Hence numerical methods are used, to compute an approximation. \\
-This can be used to simulate traffic jams as we can see in the graph . In this case cars are moving from left to right, but as time pass the traffic jam moves in the other direction.
+This can be used to simulate traffic jams as we can see in \cref{img:traffic_flow_motivation}. In this case cars are moving from left to right, but as time pass the traffic jam moves in the other direction.
 
 \end{column}
 \begin{column}{0.5\textwidth - 1.5cm}
 \textbf{The Lax-Wendroff Method}
 \vspace{-1cm}
 
-For linear hyperbolic systems ($u_t + au_x = 0$) the Lax-Wendroff methods is given as:
-\begin{align*}
-U_j^{n+1} = U_j^n - \frac{k}{2h}a(U_{j+1}^n  - U_{j-1}^n)\\
-+ \frac{k^2}{2h^2}a^2(U_{j+1}^n - 2U_j^n + U_{j-1}^n)
-\end{align*}
-The idea is to take the first three terms of the Taylor series expansion and use centered difference approximations for the derivatives appearing there. The stepsizes $k$ in time and $h$ in space are chosen such that $|a|\frac{k}{h} \leq 1$ to fulfil the CFL condition.
-For non-linear equations the scheme can be generalized to:
+The general formula of the scheme is given by:
 \begin{align*}
 &U_j^{n+1} = U_j^n\\
 &- \frac{k}{h}\left(f\left(U_{j+\frac{1}{2}}^{n+\frac{1}{2}}\right) - f\left(U_{j-\frac{1}{2}}^{n+\frac{1}{2}}\right)\right)
 \end{align*}
-where
+where $k$ stepsize in time, $h$ stepsize in space and
 \begin{align*}
 U_{j+\frac{1}{2}}^{n+\frac{1}{2}} =&~ \frac{1}{2} (U_j^n + U_{j+1}^n)\\
-&- \frac{k}{2h}[f(U_{j+1}^n) - f(U_j^n)]
+&- \frac{k}{2h}[f(U_{j+1}^n) - f(U_j^n)].
 \end{align*}
-while the step sizes are in the following considered to be controlled by $\frac{k}{h} = const$.
+The step sizes are in the following considered to be controlled by $\frac{k}{h} = const$. This fact is motivated by the CFL condition of the linear case ($u_t + au_x = 0$), where we need $|a|\frac{k}{h} \leq 1$. \\
+The method can be seen as a concatenation of the Lax-Friderich scheme.
 %The computation of the next time step can be written as a function of the solution of the current timestep by $U^{n+1} = \mathcal{H}(U^n)$. This notation can be used to define the local truncation error of a method by
 %\begin{align*}
 %L_k(x, t) = \frac{u(x, t+k) - \mathcal{H}(u(\cdot, t); x)}{k}
@@ -104,12 +99,6 @@ In the following the approximations of the Lax-Wendroff method will be presented
 
     \includegraphics{fig/burger_compare.png}
 
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> 010fbd628c31b22dac7c870021350ccde841f125
 \end{column}
 \end{column}
 \end{columns}
