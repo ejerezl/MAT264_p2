@@ -11,9 +11,9 @@ plt.style.use(cwd + '/poster.mplstyle')
 
 save = False
 '~~~~~~~~~~ SELECT THE PROBLEM FUNCTIONS ~~~~~~~~~~'
-name_of_problem = 'traffic'
+#name_of_problem = 'traffic'
 #name_of_problem = 'linear'
-#name_of_problem = 'Burger'
+name_of_problem = 'Burger'
 #name_of_problem = 'Buckley-Leverett'
 
 
@@ -34,17 +34,24 @@ T = 15
 X = 20
 h = 0.1
 
+T = 5
+X = 10
+h = 0.01
+
 X, h, x_step, T, k, t_step, U_0 = init.get_initial(name_of_init, U=0, X=X, T=T, h=h)
 
 f, f_prime, speed = init.get_problemfunction(name_of_problem, c=c)
 
 sols = []
-methods = ['Godunov', 'Lax-Wendsdroff from lecture', 'Lax-Friedrichs']
+methods = ['Lax-Wendsdroff from lecture', 'Godunov', 'Lax-Friedrichs']
 '------------------ SOLVE THE PDE WITH ALL METHODS -----------------------------------------------------------------------------------------'
 for method in methods:
     sols.append(step.solve_problem(method, U_0, X, T, h, k, x_step, t_step, f, f_prime))
 
 
+'----------------- compute true solution ---------------------------------------------------'
+datapoint = int(np.floor(T/k))
+true_sol = step.get_true_linear_sol(U_0, datapoint, h, k, c)[0]
 
 '------------------ PLOT SOLUTION ---------------------------------------------------------------------------------------------'
 'PLOT SOLUTION'
@@ -58,20 +65,28 @@ elif col_span == 1:
     matplotlib.rcParams['figure.figsize'] = (6.8025, 5.101875001)
 
 i = 0
-colors = ['darkorange', 'navy', 'green']
-name = ['Godunov', 'Lax-Wendroff', 'Lax-Friedrichs']
+colors = ['navy', 'darkorange', 'green']
+name = ['Lax-Wendroff', 'Godunov', 'Lax-Friedrichs']
 x_steplist = np.arange(0, X, h)
 for method in name:
-    plt.plot(x_steplist, sols[i][-1], label='\\rmfamily ' + method, linewidth=lw, color = colors[i]) #Plotting the solution for each method
+    plt.plot(x_steplist, sols[i][-1], label='\\rmfamily ' + method, linewidth=lw, color=colors[i]) #Plotting the solution for each method
     i += 1
 
-plt.xlim([8, 20])
+if name_of_problem == 'traffic':
+    plt.xlim([3.3, 7])
+
+elif name_of_problem == 'linear':
+    plt.plot(x_steplist, true_sol, ':', label='\\rmfamily true solution', linewidth=lw, color='dimgray', zorder=0)
+    plt.xlim([4.4, 7.5])
+
+if name_of_problem == 'Burger':
+    plt.xlim([1, 5.2])
 
 plt.title('\\rmfamily\\bfseries Solutions', pad=15)
 plt.xlabel('\\rmfamily Space')
-plt.gca().xaxis.set_label_coords(0.5, -0.25)
+plt.gca().xaxis.set_label_coords(0.5, -0.175)
 plt.ylabel('\\rmfamily Density')
-plt.legend(bbox_to_anchor=(0., -0.5, 1., .102), loc='upper left',
+plt.legend(bbox_to_anchor=(0., -0.425, 1., .102), loc='upper left',
             ncol=2, mode="expand", borderaxespad=0., handlelength=1., fontsize=21.6)
 
 if save:
