@@ -99,6 +99,13 @@ In the following the approximations of the Lax-Wendroff method will be presented
 
     \includegraphics{fig/burger_compare.png}
 
+    \textbf{\scriptsize{References}}
+    \vspace{0.3cm}
+    \nocite{*}
+    \bibliographystyle{apacite}
+    \bibliography{references}
+
+
 \end{column}
 \end{column}
 \end{columns}
