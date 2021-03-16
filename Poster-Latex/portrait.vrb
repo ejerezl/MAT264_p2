@@ -13,20 +13,20 @@
 \vspace{0.5cm}
 
 {\fontsize{40}{15}\selectfont
-	We introduce a new method for hyperbolic conservations laws, which we call the Lax-Wendroff method. Based on the one-dimensional case we illustrate how our scheme works and compare it with other numerical methods. This leads us to the conclusion that the Lax-Wendroff scheme is superior to the currently used methods.}
+	We present the Lax-Wendroff method for hyperbolic conservation laws. Based on the one-dimensional case we illustrate how the scheme works and compare it with other numerical methods. This leads us to the conclusion that the Lax-Wendroff scheme is superior to the currently used methods.}
 
 \vspace{0.5cm}
 \textbf{Introduction}
 \vspace{0.5cm}
 
-Hyperbolic conservation laws are time-dependent systems of PDE's describing the conservation of some quantities. The equation is given as:
+Hyperbolic conservation laws are time-dependent systems of PDE's describing the conservation of some quantities, such as mass, momentum or heat. The equation is given as:
 \begin{align*}
     u_t + f(u)_x = 0
 \end{align*}
-Where $u(x,t)$ is the conserved quantity, such as mass, momentum or heat, while $f(u)$ is the flux function. Flux functions are commonly nonlinear, leading to nonlinear systems of PDEs where, in general, the exact solution is unknown. Hence numerical methods are used, to compute an approximation.
+Where $u(x,t)$ is the conserved quantity, while $f(u)$ is the flux function. Flux functions are commonly nonlinear, leading to nonlinear systems of PDEs where, in general, the exact solution is unknown. Hence numerical methods are used, to compute an approximation.
 
 \vspace{0.5cm}
-This can be used to simulate traffic jams as we can see in \cref{img:traffic_flow_motivation}. In this case cars are moving from left to right, but the traffic jam moves in the opposite direction.
+This can be used to simulate traffic jams as illustrated in \cref{img:traffic_flow_motivation}. In this case cars are moving from left to right, but the traffic jam moves in the opposite direction.
 
 \vspace{0.5cm}
 \textbf{The Lax-Wendroff Method}
@@ -95,6 +95,7 @@ Applying the method to problems with discontinous initial data illustrates the p
 
 \vspace{0.5cm}
 For the linear advection equation this gives the approximations shown in \cref{img:linar_comprehension}.
+As commented before the Lax-Wendroff scheme oscillates in front of the discontinuity of the true solution. However, the discontinuity is approximated more accurate what leads to a smaller error which is shown in \cref{img:error_over_time}. Also notice that Lax-Friedrichs looses height over time.
 
 \begin{figure}[h]
 	\includegraphics{fig/linear_compare.png}
@@ -102,12 +103,8 @@ For the linear advection equation this gives the approximations shown in \cref{i
 	\label{img:linar_comprehension}
 \end{figure}
 
-As commented before the Lax-Wendroff scheme oscillates in front of the discontinuity of the true solution. But on the other hand the discontinuity is approximated more accurate what leads to a smaller error which is shown in \cref{img:error_over_time}. Also notice that Lax-Friedrichs looses height over time.
-
-\vspace{0.5cm}
+%\vspace{0.5cm}
 Comparing the runtime of the methods to compute \cref{img:linar_comprehension} it turns out that the Gudonov's one is by far the slowest which is due to its non-vectorized standard form.
-
-\vspace{0.5cm}
 Looking deeper into \cref{img:error_over_time} we can confirm that the Lax-Wendroff method has the lowest error as expected due to its higher order.
 
 \end{column}
@@ -135,14 +132,17 @@ Looking at the Burger's, the traffic and the Buckley-Leverett equation in \cref{
 	\begin{subfigure}{\textwidth}
 		\includegraphics{fig/buckley_compare.png}
 	\end{subfigure}
-	\caption{Approximations for the traffic equation (top), the Burger's equation (middel) and the Buckley-Leverett equation (bottom) at time $t = 5$.}
+	\caption{Approximations for the traffic equation (top), the Burger's equation (middle) and the Buckley-Leverett equation (bottom) at time $t = 5$.}
 	\label{img:non_lin_equation}
 \end{figure}
 
 \textbf{Conclusion}
 
 \vspace{0.5cm}
-With the Lax-Wendroff method it is possible to get accurate approximations of a discontinuity in short runtime. So we can conclude that the it can compete with the Godunov one, which is very used nowadays.
+With the Lax-Wendroff method it is possible to get accurate approximations of a discontinuity in short runtime.
+%So we can conclude that the it can compete even with the Godunov one.
+This makes it a serious competitor to the Godunov scheme.
+%, which is very used nowadays.
 
     \vspace{0.5cm}
     \textbf{\scriptsize{References}}
