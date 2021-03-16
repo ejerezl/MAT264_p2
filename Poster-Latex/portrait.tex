@@ -108,22 +108,22 @@ We introduce a new method for hyperbolic conservations laws, which we call the L
 \textbf{Introduction}
 \vspace{0.5cm}
 
-Hyperbolic conservation laws are time-dependent systems of PDE's that describes the conservation of some quantities. The equation is given as:
+Hyperbolic conservation laws are time-dependent systems of PDE's describing the conservation of some quantities. The equation is given as:
 \begin{align*}
     u_t + f(u)_x = 0
 \end{align*}
-Where $u(x,t)$ is the conserved quantity (could be mass, momentum, heat,..) while $f(u)$ is the flux function.
-
+Where $u(x,t)$ is the conserved quantity, such as mass, momentum or heat, while $f(u)$ is the flux function. 
 Flux functions are commonly nonlinear, leading to nonlinear systems of PDEs where, in general, the exact solution is unknown. Hence numerical methods are used, to compute an approximation. 
 
 \vspace{0.5cm}
-This can be used to simulate traffic jams as we can see in \cref{img:traffic_flow_motivation}. In this case cars are moving from left to right, but as time pass the traffic jam moves in the other direction. 
+This can be used to simulate traffic jams as we can see in \cref{img:traffic_flow_motivation}. In this case cars are moving from left to right, but the traffic jam moves in the opposite direction. 
 
 \vspace{0.5cm}
 \textbf{The Lax-Wendroff Method}
 
 \vspace{0.5cm}
-The general formula of the scheme is given by:
+The method can be seen as a concatenation of the Lax-Friderich scheme.
+The general formula is given by:
 \begin{align*}
 &U_j^{n+1} = U_j^n\\
 &- \frac{k}{h}\left(f\left(U_{j+\frac{1}{2}}^{n+\frac{1}{2}}\right) - f\left(U_{j-\frac{1}{2}}^{n+\frac{1}{2}}\right)\right)
@@ -136,8 +136,7 @@ where $k$ stepsize in time, $h$ stepsize in space and
 U_{j+\frac{1}{2}}^{n+\frac{1}{2}} =&~ \frac{1}{2} (U_j^n + U_{j+1}^n)\\
 &- \frac{k}{2h}[f(U_{j+1}^n) - f(U_j^n)].
 \end{align*}
-The step sizes are in the following considered to be controlled by $\frac{k}{h} = const$. This fact is motivated by the CFL condition of the linear case ($u_t + au_x = 0$), where we need $\frac{k}{h} \leq \frac{1}{|a|}$. 
-The method can be seen as a concatenation of the Lax-Friderich scheme.
+As known from the first oder schemes, the step size has to be chosen in a fixed ratio. This fact is motivated by the CFL condition of the linear case ($u_t + au_x = 0$), where we need $\frac{k}{h} \leq \frac{1}{|a|}$. 
 %The computation of the next time step can be written as a function of the solution of the current timestep by $U^{n+1} = \mathcal{H}(U^n)$. This notation can be used to define the local truncation error of a method by
 %\begin{align*}
 %L_k(x, t) = \frac{u(x, t+k) - \mathcal{H}(u(\cdot, t); x)}{k}
@@ -148,17 +147,17 @@ The method can be seen as a concatenation of the Lax-Friderich scheme.
 Computing the local truncation error of Lax-Wendroff yields
 \begin{align*}
 L_k(x, t) = &\frac{a}{6}(a^2 k^2 - h^2)u_{xxx} \\
-&+ \mathcal{O}(h^3)
+&+ \mathcal{O}(h^3) \text{,}
 \end{align*}
-As $L_k(x,t) = \mathcal{O}(h^2)$ the method is consistent and has order 2. Additional for stability the condition $|\nu| < 1$ where $\nu = a\frac{k}{h}$ is the Courant number must be fulfilled. 
-In the case of an linear advection equation the convergence of a method follows from consistency and stability by the Lax equivalence theorem. In the nonlinear case Lax and Wendroff proved that a consistent numerical method with bounded solutions always converges to a weak solution of the equation.
+therefore this is a consistent second order method. Additional for stability the condition $|\nu| < 1$ where $\nu = a\frac{k}{h}$ is the Courant number must be fulfilled. 
+In the case of a linear advection equation the convergence of a method follows from consistency and stability by the Lax equivalence theorem. For the nonlinear case it is proven that a consistent numerical method with bounded solutions always converges to a weak solution of the equation.
 The local truncation error also leads to the modified equation which is given as:
 \begin{align*}
 u_t + a u_x &= \frac{a}{6} (a^2 k^2 - h^2) u_{xxx}\\
 &:= \mu u_{xxx}
 \end{align*}
 
-This is also a dispersive equation and a solution $u(x, t)$ of it can be represented in Fourier space.  By isolating each wavenumber $\xi$ to apply solutions of the form $u(x,t) = e^{i(\xi x - c(\xi)t)}$ to the linear
+This is also a dispersive equation and a solution $u(x, t)$ of it can be represented in Fourier space. Isolating each wavenumber $\xi$ by applying solutions of the form $u(x,t) = e^{i(\xi x - c(\xi)t)}$ to the linear
 
     \end{column}
 \end{column}
@@ -174,35 +173,33 @@ Based on this relation its possible to calculate the group velocity $c’(\xi)$ 
 \begin{align*}
 c'(\xi) = a + 3\mu \xi^2
 \end{align*}
-As $\mu = \frac{a}{6}h^2(\nu^2 - 1)$ and since $a > 0$ and for stability $|\nu| < 1$ the group velocity $c’(\xi)$ is smaller than $a$ for all $\xi$, but tens to $a$ as $h\rightarrow0$. It follows that the scheme leads to an oscillatory wave train lagging behind the discontinuity, which is traveling with speed $a$. This can also be seen later in the numerical experiments.
+As $\mu = \frac{a}{6}h^2(\nu^2 - 1)$ and since, without loss of gernerality, $a > 0$ and for stability $|\nu| < 1$ the group velocity $c’(\xi)$ is smaller than $a$ for all $\xi$, but tends to $a$ as $h\rightarrow0$. It follows that the scheme leads to an oscillatory wave train lagging behind the discontinuity, which is traveling with speed $a$. This can also be seen later in the numerical experiments.
     
 \vspace{0.5cm}
 \textbf{Numerical Analysis}
 \vspace{0.5cm}
     
-In the following the approximations of the Lax-Wendroff method will be presented in comparison to Lax-Friedrich and Godunov.
+Applying the method to problems with discontinous initial data illustrates the properties of the scheme.
 
 \vspace{0.5cm}
-Applying the methods to the linear advection equation yields to approximations shown in \cref{img:linar_comprehension}. 
+For the linear advection equation this gives the approximations shown in \cref{img:linar_comprehension}. 
 
 \begin{figure}[h]
 	\includegraphics{fig/linear_compare.png}
-	\caption{Approximations for the linear advection equation after some time.}
+	\caption{Approximations for the linear advection equation at time $t = 5$.}
 	\label{img:linar_comprehension}
 \end{figure}
 
-As comented before the Lax-Wendroff scheme oscilates in front of the discontinuity of the true solution. But on the other hand the discontinuity is approximated better what leads to a smaller error which is shown in \cref{img:error_over_time}. Also notice that the Lax-Friedrich does not reach the 
- 
-total hight of the true solution resulting in a bad approximation. 
+As commented before the Lax-Wendroff scheme oscillates in front of the discontinuity of the true solution. But on the other hand the discontinuity is approximated more accurate what leads to a smaller error which is shown in \cref{img:error_over_time}. Also notice that Lax-Friedrichs looses height over time. 
 
-Comparing the runtime of the methods to compute \cref{img:linar_comprehension} turns out that the Gudonov's one is the slowest with a big difference to the others.
+\vspace{0.5cm}
+Comparing the runtime of the methods to compute \cref{img:linar_comprehension} turns out that the Gudonov's one is by far the slowest which is due to its non-vectorized standard form.
 
 \end{column}
 \begin{column}{0.5\textwidth - 1.5cm}
 	\vspace*{-1.7cm} 
 	
-\vspace{0.5cm}
-Looking deeper into \cref{img:error_over_time} we can confirm that the Lax-Wendroff methods has the lowest error as expected due to its high order.
+Looking deeper into \cref{img:error_over_time} we can confirm that the Lax-Wendroff method has the lowest error as expected due to its higher order.
    
     \begin{figure}
     	\includegraphics{fig/error_over_time.png}
@@ -210,21 +207,18 @@ Looking deeper into \cref{img:error_over_time} we can confirm that the Lax-Wendr
     	\label{img:error_over_time}
     \end{figure}
 
-We will now look into some non-linear advection equations. The traffic flow and the Burger's equation. The solutions are quite accurate and we can see similar behavior like the oscillations of Lax-Wendroff close to the discontinuity.
+Looking at the Burger's and traffic equation in \cref{img:non_lin_equation}, the obtained result is still quite accurate and we can see similar behavior. Note again the predicted oscillations of Lax-Wendroff in front of to the discontinuity.
 
 \begin{figure}
 	\begin{subfigure}{\textwidth}
 	\includegraphics{fig/traffic_compare_.png}
-	\caption{Traffic equation}
-	\label{img:traffic_comprehension}
 	\end{subfigure}
 
 	\begin{subfigure}{\textwidth}
 		\includegraphics{fig/burger_compare.png}
-		\caption{Burger's equation}
-		\label{img:burger_comprehension}
 	\end{subfigure}
-	\caption{Approximations for the advection equaion with different flux functions after some time.}
+	\caption{Approximations for the traffic equation (top) and Burger's equation (bottom) at time $t = 5$.}
+	\label{img:non_lin_equation}
 \end{figure}
 
 \textbf{Conclusion}
