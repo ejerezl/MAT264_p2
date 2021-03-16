@@ -80,8 +80,7 @@
 \begin{textblock}{0.5}(0.038, 0.055)
     \color{white}
     \sffamily
-    \textbf{Ingress}
-    \\
+    \vspace{1cm}
 A new second order scheme for hyperbolic conversation laws allowing fast and accurate computation of smooth solutions. 
 %TODO Better Impress
 %The Lax-Wendroff scheme for solving hyperbolic conservation laws as competitor against the Lax-Friedrichs and Godunov method. Some properties will be presented and the numerical results will be compared.
@@ -108,7 +107,7 @@ The main topic of this poster is to introduce the Lax-Wendroff scheme for solvin
 \textbf{Introduction}
 \vspace{0.5cm}
 
-Hyperbolic conservation laws are time-dependent systems of PDE's that describes the conservation of some quantities. The equation is given as:
+Hyperbolic conservation laws are time-dependent systems of PDEs that describes the conservation of some quantities. The equation is given as:
 \begin{align*}
     u_t + f(u)_x = 0
 \end{align*}
@@ -164,7 +163,7 @@ This is also a dispersive equation and a solution $u(x, t)$ of it can be represe
 \end{column}
 \begin{column}{0.5\textwidth - 1.5cm}
 \begin{column}{0.5\textwidth - 1.5cm}
-\vspace*{-1.7cm}
+\vspace*{-2cm}
 
 advection equation yields the dispersion relation:
 \begin{align*}
@@ -180,7 +179,7 @@ As $\mu = \frac{a}{6}h^2(\nu^2 - 1)$ and since $a > 0$ and for stability $|\nu| 
 \textbf{Numerical Analysis}
 \vspace{0.5cm}
     
-In the following the approximations of the Lax-Wendroff method will be presented in comparison to Lax-Friedrich and Godunov.
+In the following the approximations of the Lax-Wendroff method will be presented in comparison to Lax-Friedrich and Godunov on a Riemann problem.
 
 \vspace{0.5cm}
 Applying the methods to the linear advection equation yields to approximations shown in \cref{img:linar_comprehension}. 
@@ -191,7 +190,7 @@ Applying the methods to the linear advection equation yields to approximations s
 	\label{img:linar_comprehension}
 \end{figure}
 
-As comented before the Lax-Wendroff scheme oscilates in front of the discontinuity of the true solution. But on the other hand the discontinuity is approximated better what leads to a smaller error which is shown in \cref{img:error_over_time}. Also notice that the Lax-Friedrich does not reach the 
+As commented before the Lax-Wendroff scheme oscillates in front of the discontinuity of the true solution. But on the other hand the discontinuity is approximated better what leads to a smaller error which is shown in \cref{img:error_over_time}. Also notice that the Lax-Friedrich does not reach the 
  
 total hight of the true solution resulting in a bad approximation. 
 
@@ -199,9 +198,8 @@ Comparing the runtime of the methods to compute \cref{img:linar_comprehension} t
 
 \end{column}
 \begin{column}{0.5\textwidth - 1.5cm}
-	\vspace*{-1.7cm} 
-	
-\vspace{0.5cm}
+	\vspace*{-2cm} 
+
 Looking deeper into \cref{img:error_over_time} we can confirm that the Lax-Wendroff methods has the lowest error as expected due to its high order.
    
     \begin{figure}
@@ -224,7 +222,7 @@ We will now look into some non-linear advection equations. The traffic flow and 
 		\caption{Burger's equation}
 		\label{img:burger_comprehension}
 	\end{subfigure}
-	\caption{Approximations for the advection equaion with different flows after some time.}
+	\caption{Approximations for the advection equation with different flows after some time.}
 \end{figure}
 
 \textbf{Conclusion}
