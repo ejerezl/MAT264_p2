@@ -101,12 +101,14 @@ plt.plot(time_list, error_laxW_l, label='\\rmfamily Lax Wendroff', color='navy',
 #plt.title('\\rmfamily\\bfseries Error over time', pad=15)
 plt.title('\\rmfamily\\bfseries ', pad=15, fontsize=21.6)
 plt.xlabel('\\rmfamily t')
-plt.gca().xaxis.set_label_coords(1.05, -0.1)
+plt.gca().xaxis.set_label_coords(1.025, -0.1)
 plt.ylabel('\\rmfamily Error', rotation=0)
 plt.gca().yaxis.set_label_coords(-0.15, 0.95)
-plt.legend(bbox_to_anchor=(0., -0.25, 1., .102), loc='upper left',
-            ncol=2, mode="expand", borderaxespad=0., handlelength=1., fontsize=21.6)
-plt.tight_layout()
+#plt.legend(bbox_to_anchor=(0., -0.25, 1., .102), loc='upper left',
+#            ncol=2, mode="expand", borderaxespad=0., handlelength=1., fontsize=21.6)
+plt.legend(bbox_to_anchor=(-0.3, -0.35, 1.34, .102), loc='upper left',
+ ncol=2, mode="expand", borderaxespad=0., handlelength=0.75, fontsize=32.)
+#plt.tight_layout()
 
 if save:
     plt.savefig('figures/error_over_time.png', dpi=300)
