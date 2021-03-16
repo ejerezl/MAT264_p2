@@ -12,8 +12,8 @@ plt.style.use(cwd + '/poster.mplstyle')
 
 save = True
 '~~~~~~~~~~ SELECT THE PROBLEM FUNCTIONS ~~~~~~~~~~'
-name_of_problem = 'traffic'
-#name_of_problem = 'linear'
+#name_of_problem = 'traffic'
+name_of_problem = 'linear'
 #name_of_problem = 'Burger'
 #name_of_problem = 'Buckley-Leverett'
 
@@ -29,6 +29,7 @@ name_of_init = 'police problem'
 #name_of_init = 'cos function 2'
 
 
+c = 4
 c = 1
 
 T = 5
@@ -63,7 +64,8 @@ if col_span == 2:
     matplotlib.rcParams['figure.figsize'] = (14.78636, 11.089770003)
 elif col_span == 1:
     lw = 2
-    matplotlib.rcParams['figure.figsize'] = (6.8025, 5.101875001*0.8)
+    #matplotlib.rcParams['figure.figsize'] = (6.8025, 5.101875001*0.8)
+    matplotlib.rcParams['figure.figsize'] = (6.8025, 5.101875001 * 1.05)
 
 i = 0
 colors = ['navy', 'darkorange', 'green']
@@ -84,6 +86,9 @@ elif name_of_problem == 'linear':
 if name_of_problem == 'Burger':
     plt.xlim([1, 5.2])
 
+if name_of_problem == 'Buckley-Leverett':
+    plt.xlim([0, 3.25])
+
 #plt.title('\\rmfamily\\bfseries Solutions', pad=15)
 plt.title('\\rmfamily\\bfseries ', pad=15,  fontsize=21.6)
 plt.xlabel('\\rmfamily Space')
@@ -92,10 +97,12 @@ plt.gca().xaxis.set_label_coords(0.89, -0.1)
 plt.ylabel('\\rmfamily Density', rotation=0)
 plt.gca().yaxis.set_label_coords(-0.15, 0.95)
 #plt.legend(bbox_to_anchor=(0., -0.35, 1., .102), loc='upper left',
-#            ncol=2, mode="expand", borderaxespad=0., handlelength=1., fontsize=21.6)
+# ncol=2, mode="expand", borderaxespad=0., handlelength=1., fontsize=25.6)
+plt.legend(bbox_to_anchor=(-0.3, -0.35, 1.34, .102), loc='upper left',
+ ncol=2, mode="expand", borderaxespad=0., handlelength=0.75, fontsize=32.)
 
 if save:
-    plt.savefig('figures/traffic_comprehension_.png', dpi=300)
+    plt.savefig('figures/linear_compare.png', dpi=300)
 plt.show()
 
 print(methods)

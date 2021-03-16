@@ -6,10 +6,10 @@ import conversation_laws as step
 
 
 '~~~~~~~~~~ SELECT THE PROBLEM FUNCTIONS ~~~~~~~~~~'
-name_of_problem = 'traffic'
+#name_of_problem = 'traffic'
 #name_of_problem = 'linear'
 #name_of_problem = 'Burger'
-#name_of_problem = 'Buckley-Leverett'
+name_of_problem = 'Buckley-Leverett'
 
 
 '~~~~~~~~~~ SELECT THE METHOD ~~~~~~~~~~'
